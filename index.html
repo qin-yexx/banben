@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>李明远 - 产品设计总监 | 可编辑简历</title>
+    <title>李明远 - 产品设计总监 | 自由编辑简历</title>
     <style>
         :root {
             --bg-cream: #faf8f5;
@@ -17,28 +17,32 @@
             --accent-purple: #7c5cfc;
             --accent-gold: #f0a500;
             --accent-rose: #e84a7a;
-            --shadow-sm: 0 2px 8px rgba(0,0,0,0.04);
-            --shadow-md: 0 4px 16px rgba(0,0,0,0.06);
-            --shadow-lg: 0 8px 32px rgba(0,0,0,0.08);
+            --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.04);
+            --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.06);
+            --shadow-lg: 0 8px 32px rgba(0, 0, 0, 0.08);
             --radius-md: 12px;
             --radius-lg: 16px;
             --radius-xl: 20px;
-            --transition: 0.3s cubic-bezier(0.4,0,0.2,1);
+            --transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         }
+
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
+
         html {
             scroll-behavior: smooth;
             scroll-padding-top: 80px;
         }
+
         body {
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif;
             background: var(--bg-cream);
             color: var(--text-dark);
             line-height: 1.7;
+            user-select: none;
         }
 
         /* 编辑模式指示器 */
@@ -68,9 +72,9 @@
             position: sticky;
             top: 0;
             z-index: 100;
-            background: rgba(255,255,255,0.92);
+            background: rgba(255, 255, 255, 0.92);
             backdrop-filter: blur(20px);
-            border-bottom: 1px solid rgba(0,0,0,0.06);
+            border-bottom: 1px solid rgba(0, 0, 0, 0.06);
             padding: 0 24px;
         }
         .nav-inner {
@@ -96,9 +100,6 @@
             border-radius: 6px;
             transition: var(--transition);
         }
-        .nav-logo:hover {
-            background: rgba(74,144,217,0.06);
-        }
         .nav-logo .dot {
             width: 8px;
             height: 8px;
@@ -123,7 +124,7 @@
         }
         .nav-links a:hover {
             color: var(--accent-blue);
-            background: rgba(74,144,217,0.06);
+            background: rgba(74, 144, 217, 0.06);
         }
         .nav-cta {
             background: var(--accent-blue) !important;
@@ -131,9 +132,6 @@
             padding: 8px 20px !important;
             border-radius: 24px !important;
             font-weight: 600 !important;
-        }
-        .nav-cta:hover {
-            background: #3a7bc8 !important;
         }
 
         /* 编辑工具栏 */
@@ -148,10 +146,12 @@
             padding: 8px 16px;
             display: flex;
             gap: 8px;
-            box-shadow: 0 8px 32px rgba(0,0,0,0.2);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+            flex-wrap: wrap;
+            justify-content: center;
         }
         .edit-toolbar button {
-            background: rgba(255,255,255,0.1);
+            background: rgba(255, 255, 255, 0.1);
             color: #fff;
             border: none;
             padding: 8px 16px;
@@ -166,22 +166,16 @@
             gap: 4px;
         }
         .edit-toolbar button:hover {
-            background: rgba(255,255,255,0.2);
+            background: rgba(255, 255, 255, 0.2);
         }
         .edit-toolbar button.active {
             background: var(--accent-teal);
         }
-        .edit-toolbar button.danger {
-            background: rgba(255,107,107,0.3);
-        }
-        .edit-toolbar button.danger:hover {
-            background: var(--accent-coral);
-        }
         .edit-toolbar button.primary {
             background: var(--accent-blue);
         }
-        .edit-toolbar button.primary:hover {
-            background: #3a7bc8;
+        .edit-toolbar button.danger {
+            background: rgba(255, 107, 107, 0.3);
         }
 
         /* 主容器 */
@@ -204,6 +198,9 @@
         .hero-left {
             flex: 1;
             min-width: 280px;
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
         }
         .hero-tag {
             display: inline-block;
@@ -213,26 +210,17 @@
             border-radius: 20px;
             font-size: 0.85rem;
             font-weight: 600;
-            margin-bottom: 16px;
             cursor: text;
             outline: none;
-            transition: var(--transition);
-        }
-        .hero-tag:focus {
-            box-shadow: 0 0 0 3px rgba(46,196,182,0.3);
+            width: fit-content;
         }
         .hero-name {
             font-size: 3rem;
             font-weight: 800;
-            margin-bottom: 12px;
             cursor: text;
             outline: none;
             padding: 2px 4px;
             border-radius: 4px;
-            transition: var(--transition);
-        }
-        .hero-name:focus {
-            background: rgba(74,144,217,0.06);
         }
         .hero-name .accent {
             color: var(--accent-blue);
@@ -240,15 +228,10 @@
         .hero-title {
             font-size: 1.2rem;
             color: var(--text-gray);
-            margin-bottom: 24px;
             cursor: text;
             outline: none;
             padding: 2px 4px;
             border-radius: 4px;
-            transition: var(--transition);
-        }
-        .hero-title:focus {
-            background: rgba(0,0,0,0.03);
         }
         .hero-contact {
             display: flex;
@@ -266,11 +249,6 @@
             box-shadow: var(--shadow-sm);
             cursor: text;
             outline: none;
-            transition: var(--transition);
-        }
-        .hero-contact span:focus {
-            box-shadow: var(--shadow-md);
-            transform: translateY(-1px);
         }
         .hero-right {
             flex: 1;
@@ -321,7 +299,7 @@
             position: absolute;
             bottom: 12px;
             left: 12px;
-            background: rgba(0,0,0,0.6);
+            background: rgba(0, 0, 0, 0.6);
             color: #fff;
             padding: 4px 12px;
             border-radius: 16px;
@@ -329,9 +307,6 @@
             z-index: 2;
             cursor: text;
             outline: none;
-        }
-        .media-label:focus {
-            background: rgba(0,0,0,0.8);
         }
 
         /* 板块 */
@@ -349,9 +324,6 @@
             outline-offset: 8px;
             border-radius: var(--radius-lg);
         }
-        .section-block.drag-handle-active {
-            cursor: grabbing;
-        }
         .section-block .drag-handle {
             position: absolute;
             top: 8px;
@@ -360,7 +332,7 @@
             width: 28px;
             height: 28px;
             border-radius: 6px;
-            background: rgba(0,0,0,0.06);
+            background: rgba(0, 0, 0, 0.06);
             cursor: grab;
             display: flex;
             align-items: center;
@@ -375,71 +347,93 @@
         }
         .section-block .drag-handle:active {
             cursor: grabbing;
-            background: rgba(0,0,0,0.12);
+            background: rgba(0, 0, 0, 0.12);
         }
         .section-block.reverse {
             flex-direction: row-reverse;
         }
-        .section-left {
-            flex: 1;
-            min-width: 280px;
-            background: var(--bg-white);
-            border-radius: var(--radius-lg);
-            padding: 32px;
-            box-shadow: var(--shadow-md);
-            border-left: 5px solid var(--accent-blue);
-            position: relative;
-            transition: var(--transition);
-        }
-        .section-left.accent-teal {
-            border-left-color: var(--accent-teal);
-        }
-        .section-left.accent-coral {
-            border-left-color: var(--accent-coral);
-        }
-        .section-left.accent-purple {
-            border-left-color: var(--accent-purple);
-        }
-        .section-left.accent-gold {
-            border-left-color: var(--accent-gold);
-        }
-        .section-left.accent-rose {
-            border-left-color: var(--accent-rose);
-        }
+        .section-left,
         .section-right {
             flex: 1;
             min-width: 280px;
             display: flex;
             flex-direction: column;
             gap: 20px;
+            position: relative;
         }
+        .section-left>div,
+        .section-right>div {
+            background: var(--bg-white);
+            border-radius: var(--radius-lg);
+            padding: 24px;
+            box-shadow: var(--shadow-md);
+            position: relative;
+            cursor: default;
+            transition: var(--transition);
+        }
+        .section-left>div:hover,
+        .section-right>div:hover {
+            box-shadow: var(--shadow-lg);
+        }
+        .section-left>div.dragging,
+        .section-right>div.dragging {
+            opacity: 0.5;
+            transform: scale(0.98);
+            box-shadow: var(--shadow-lg);
+            border: 2px dashed var(--accent-blue);
+        }
+        .section-left>div.drag-over-inner,
+        .section-right>div.drag-over-inner {
+            border: 2px dashed var(--accent-teal);
+            background: rgba(46, 196, 182, 0.03);
+        }
+
+        /* 板块内子项的拖拽手柄 */
+        .section-left>div .inner-drag-handle,
+        .section-right>div .inner-drag-handle {
+            position: absolute;
+            top: 8px;
+            right: 8px;
+            z-index: 5;
+            width: 24px;
+            height: 24px;
+            border-radius: 4px;
+            background: rgba(0, 0, 0, 0.04);
+            cursor: grab;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.7rem;
+            opacity: 0;
+            transition: opacity 0.3s;
+            color: #999;
+        }
+        .section-left>div:hover .inner-drag-handle,
+        .section-right>div:hover .inner-drag-handle {
+            opacity: 1;
+        }
+        .section-left>div .inner-drag-handle:active,
+        .section-right>div .inner-drag-handle:active {
+            cursor: grabbing;
+            background: rgba(0, 0, 0, 0.1);
+        }
+
         .section-title {
             font-size: 1.5rem;
             font-weight: 700;
-            margin-bottom: 16px;
-            display: flex;
-            align-items: center;
-            gap: 10px;
+            margin-bottom: 8px;
             cursor: text;
             outline: none;
             padding: 2px 4px;
             border-radius: 4px;
-            transition: var(--transition);
-        }
-        .section-title:focus {
-            background: rgba(74,144,217,0.04);
         }
         .section-subtitle {
             color: var(--text-gray);
-            margin-bottom: 12px;
+            margin-bottom: 8px;
             cursor: text;
             outline: none;
             padding: 2px 4px;
             border-radius: 4px;
-            transition: var(--transition);
-        }
-        .section-subtitle:focus {
-            background: rgba(0,0,0,0.03);
         }
         .section-text {
             color: var(--text-gray);
@@ -447,15 +441,11 @@
             line-height: 1.8;
         }
         .section-text p {
-            margin-bottom: 10px;
+            margin-bottom: 8px;
             cursor: text;
             outline: none;
             padding: 2px 4px;
             border-radius: 4px;
-            transition: var(--transition);
-        }
-        .section-text p:focus {
-            background: rgba(0,0,0,0.03);
         }
         .media-slot {
             background: var(--bg-white);
@@ -464,6 +454,7 @@
             box-shadow: var(--shadow-md);
             cursor: pointer;
             position: relative;
+            padding: 0 !important;
         }
         .media-slot .remove-media {
             position: absolute;
@@ -473,7 +464,7 @@
             width: 24px;
             height: 24px;
             border-radius: 50%;
-            background: rgba(255,107,107,0.8);
+            background: rgba(255, 107, 107, 0.8);
             color: #fff;
             border: none;
             cursor: pointer;
@@ -518,10 +509,6 @@
             background: #fafbfc;
             cursor: text;
             outline: none;
-            transition: var(--transition);
-        }
-        .slot-label:focus {
-            background: #f0f3f7;
         }
         .dot-indicator {
             width: 8px;
@@ -545,7 +532,6 @@
             display: flex;
             flex-wrap: wrap;
             gap: 8px;
-            margin-top: 12px;
         }
         .tag {
             background: #f0f2f5;
@@ -554,12 +540,7 @@
             font-size: 0.85rem;
             cursor: text;
             outline: none;
-            transition: var(--transition);
             position: relative;
-        }
-        .tag:focus {
-            background: var(--accent-blue);
-            color: #fff;
         }
         .tag .remove-tag {
             position: absolute;
@@ -583,7 +564,7 @@
         .timeline-item {
             padding-left: 16px;
             border-left: 2px solid #e0e0e0;
-            margin-bottom: 16px;
+            margin-bottom: 12px;
             position: relative;
         }
         .time-label {
@@ -594,10 +575,6 @@
             outline: none;
             padding: 2px 4px;
             border-radius: 4px;
-            transition: var(--transition);
-        }
-        .time-label:focus {
-            background: rgba(0,0,0,0.03);
         }
         .timeline-item h4 {
             font-weight: 600;
@@ -606,53 +583,53 @@
             outline: none;
             padding: 2px 4px;
             border-radius: 4px;
-            transition: var(--transition);
-        }
-        .timeline-item h4:focus {
-            background: rgba(0,0,0,0.03);
         }
         .highlight-box {
             background: #f8fafc;
             border-radius: var(--radius-md);
             padding: 16px;
-            margin-top: 12px;
             border: 1px solid #e8ecf1;
             cursor: text;
             outline: none;
-            transition: var(--transition);
-        }
-        .highlight-box:focus {
-            background: #f0f4f8;
-            border-color: var(--accent-blue);
         }
 
-        /* 添加板块按钮 */
-        .add-section-area {
-            text-align: center;
-            padding: 20px;
-            margin-bottom: 40px;
+        /* 可编辑提示 */
+        [contenteditable="true"]:hover {
+            outline: 1px dashed rgba(74, 144, 217, 0.2);
+            outline-offset: 2px;
         }
-        .add-section-btn {
-            background: var(--bg-white);
+        [contenteditable="true"]:focus {
+            outline: 2px solid var(--accent-blue);
+            outline-offset: 2px;
+            background: rgba(74, 144, 217, 0.03);
+        }
+
+        /* 添加内容按钮 */
+        .add-content-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 4px;
+            background: transparent;
             border: 2px dashed #d0d5dd;
-            border-radius: var(--radius-lg);
-            padding: 16px 32px;
+            border-radius: var(--radius-md);
+            padding: 12px;
             cursor: pointer;
-            font-size: 1rem;
-            color: var(--text-gray);
+            font-size: 0.85rem;
+            color: var(--text-light);
             transition: var(--transition);
-            font-weight: 500;
+            width: 100%;
         }
-        .add-section-btn:hover {
+        .add-content-btn:hover {
             border-color: var(--accent-blue);
             color: var(--accent-blue);
-            background: rgba(74,144,217,0.03);
+            background: rgba(74, 144, 217, 0.03);
         }
 
         /* 滚动按钮 */
         .scroll-indicator {
             position: fixed;
-            bottom: 24px;
+            bottom: 100px;
             right: 24px;
             z-index: 50;
             display: flex;
@@ -692,30 +669,16 @@
             background: var(--accent-coral);
         }
 
-        /* 可编辑提示 */
-        [contenteditable="true"]:hover {
-            outline: 1px dashed rgba(74,144,217,0.2);
-            outline-offset: 2px;
-        }
-        [contenteditable="true"]:focus {
-            outline: 2px solid var(--accent-blue);
-            outline-offset: 2px;
-            background: rgba(74,144,217,0.03);
-        }
-
         /* 页脚 */
         .footer {
             text-align: center;
             padding: 40px 24px;
             color: var(--text-light);
             font-size: 0.85rem;
-            border-top: 1px solid rgba(0,0,0,0.06);
+            border-top: 1px solid rgba(0, 0, 0, 0.06);
             margin-top: 40px;
             cursor: text;
             outline: none;
-        }
-        .footer:focus {
-            background: rgba(0,0,0,0.02);
         }
 
         @media (max-width: 768px) {
@@ -730,36 +693,30 @@
             .hero-name {
                 font-size: 2.2rem;
             }
-            .nav-links {
-                gap: 4px;
-                font-size: 0.75rem;
-            }
-            .nav-links a {
-                padding: 4px 8px;
-            }
             .edit-toolbar {
                 bottom: 12px;
-                padding: 6px 12px;
+                padding: 6px 10px;
                 gap: 4px;
-                border-radius: 24px;
             }
             .edit-toolbar button {
                 padding: 6px 10px;
-                font-size: 0.75rem;
+                font-size: 0.7rem;
+            }
+            .scroll-indicator {
+                bottom: 80px;
+                right: 12px;
             }
         }
     </style>
 </head>
 <body>
 
-    <!-- 编辑模式指示器 -->
-    <div class="edit-mode-indicator" id="editModeIndicator">✏️ 编辑模式已开启 - 点击任意文字即可编辑</div>
+    <div class="edit-mode-indicator" id="editModeIndicator">✏️ 编辑模式已开启 - 拖拽板块或内部内容调整位置</div>
 
-    <!-- 导航 -->
     <nav class="top-nav">
         <div class="nav-inner">
-            <span class="nav-logo" contenteditable="true" id="navLogo"><span class="dot"></span>李明远</span>
-            <ul class="nav-links" id="navLinks">
+            <span class="nav-logo" contenteditable="true"><span class="dot"></span>李明远</span>
+            <ul class="nav-links">
                 <li><a href="#about" contenteditable="true">关于我</a></li>
                 <li><a href="#experience" contenteditable="true">工作经历</a></li>
                 <li><a href="#projects" contenteditable="true">项目案例</a></li>
@@ -773,7 +730,7 @@
     <div class="main-container" id="mainContainer">
 
         <!-- Hero -->
-        <section class="hero-section" id="heroSection" draggable="false">
+        <section class="hero-section" id="heroSection">
             <div class="hero-left">
                 <span class="hero-tag" contenteditable="true">🚀 开放工作机会</span>
                 <h1 class="hero-name" contenteditable="true">李明远<span class="accent">.</span></h1>
@@ -798,20 +755,33 @@
 
         <!-- 关于我 -->
         <div class="section-block" id="about" draggable="true">
-            <span class="drag-handle" title="拖拽移动板块">⋮⋮</span>
-            <div class="section-left">
-                <div class="section-title" contenteditable="true">👤 关于我</div>
-                <p class="section-subtitle" contenteditable="true">用设计连接用户与产品</p>
-                <div class="section-text">
-                    <p contenteditable="true">拥有<strong>12年+</strong>产品设计经验，曾在字节跳动、阿里巴巴担任高级设计管理职位。擅长从0到1构建设计系统，带领团队交付了多款千万级用户产品。</p>
-                    <p contenteditable="true">坚信<strong>数据驱动设计</strong>与<strong>用户同理心</strong>的平衡是创造卓越产品的关键。</p>
+            <span class="drag-handle" title="拖拽移动整个板块">⋮⋮</span>
+            <div class="section-left" data-column="left">
+                <div draggable="true" class="inner-draggable">
+                    <span class="inner-drag-handle" title="拖拽移动此内容块">⠿</span>
+                    <div class="section-title" contenteditable="true">👤 关于我</div>
                 </div>
-                <div class="highlight-box" contenteditable="true">
-                    <strong>🏆 核心成就：</strong>主导设计的产品累计用户超<strong>5000万</strong>，获红点设计奖提名。
+                <div draggable="true" class="inner-draggable">
+                    <span class="inner-drag-handle" title="拖拽移动此内容块">⠿</span>
+                    <p class="section-subtitle" contenteditable="true">用设计连接用户与产品</p>
                 </div>
+                <div draggable="true" class="inner-draggable">
+                    <span class="inner-drag-handle" title="拖拽移动此内容块">⠿</span>
+                    <div class="section-text">
+                        <p contenteditable="true">拥有<strong>12年+</strong>产品设计经验，曾在字节跳动、阿里巴巴担任高级设计管理职位。擅长从0到1构建设计系统，带领团队交付了多款千万级用户产品。</p>
+                    </div>
+                </div>
+                <div draggable="true" class="inner-draggable">
+                    <span class="inner-drag-handle" title="拖拽移动此内容块">⠿</span>
+                    <div class="highlight-box" contenteditable="true">
+                        <strong>🏆 核心成就：</strong>主导设计的产品累计用户超<strong>5000万</strong>，获红点设计奖提名。
+                    </div>
+                </div>
+                <button class="add-content-btn" onclick="addContentBlock(this)">+ 添加内容块</button>
             </div>
-            <div class="section-right">
-                <div class="media-slot">
+            <div class="section-right" data-column="right">
+                <div draggable="true" class="inner-draggable media-slot">
+                    <span class="inner-drag-handle" title="拖拽移动此内容块">⠿</span>
                     <button class="remove-media" onclick="removeMedia(this)" title="移除媒体">✕</button>
                     <div class="slot-inner" onclick="triggerUpload(this)">
                         <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?w=800&h=500&fit=crop" alt="团队工作照" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" loading="lazy">
@@ -820,7 +790,8 @@
                     </div>
                     <div class="slot-label" contenteditable="true"><span class="dot-indicator dot-blue"></span>团队协作瞬间</div>
                 </div>
-                <div class="media-slot">
+                <div draggable="true" class="inner-draggable media-slot">
+                    <span class="inner-drag-handle" title="拖拽移动此内容块">⠿</span>
                     <button class="remove-media" onclick="removeMedia(this)" title="移除媒体">✕</button>
                     <div class="slot-inner" onclick="triggerUpload(this)">
                         <video src="" poster="https://images.unsplash.com/photo-1559526324-593bc073d938?w=800&h=500&fit=crop" controls preload="metadata" style="display:none" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"></video>
@@ -829,32 +800,47 @@
                     </div>
                     <div class="slot-label" contenteditable="true"><span class="dot-indicator dot-teal"></span>个人介绍视频</div>
                 </div>
+                <button class="add-content-btn" onclick="addContentBlock(this)">+ 添加内容块</button>
             </div>
         </div>
 
         <!-- 工作经历 -->
         <div class="section-block reverse" id="experience" draggable="true">
-            <span class="drag-handle" title="拖拽移动板块">⋮⋮</span>
-            <div class="section-left accent-teal">
-                <div class="section-title" contenteditable="true">💼 工作经历</div>
-                <div class="timeline-item">
-                    <div class="time-label" contenteditable="true">2021 - 至今</div>
-                    <h4 contenteditable="true">产品设计总监 · 字节跳动</h4>
-                    <p class="section-text" contenteditable="true">负责抖音电商设计团队，管理15人团队，主导设计系统升级。</p>
+            <span class="drag-handle" title="拖拽移动整个板块">⋮⋮</span>
+            <div class="section-left" data-column="left">
+                <div draggable="true" class="inner-draggable">
+                    <span class="inner-drag-handle" title="拖拽移动此内容块">⠿</span>
+                    <div class="section-title" contenteditable="true">💼 工作经历</div>
                 </div>
-                <div class="timeline-item">
-                    <div class="time-label" contenteditable="true">2017 - 2021</div>
-                    <h4 contenteditable="true">高级设计经理 · 阿里巴巴</h4>
-                    <p class="section-text" contenteditable="true">领导淘宝直播设计团队，从0搭建直播电商设计规范。</p>
+                <div draggable="true" class="inner-draggable">
+                    <span class="inner-drag-handle" title="拖拽移动此内容块">⠿</span>
+                    <div class="timeline-item">
+                        <div class="time-label" contenteditable="true">2021 - 至今</div>
+                        <h4 contenteditable="true">产品设计总监 · 字节跳动</h4>
+                        <p class="section-text" contenteditable="true">负责抖音电商设计团队，管理15人团队，主导设计系统升级。</p>
+                    </div>
                 </div>
-                <div class="timeline-item">
-                    <div class="time-label" contenteditable="true">2013 - 2017</div>
-                    <h4 contenteditable="true">资深UX设计师 · 腾讯</h4>
-                    <p class="section-text" contenteditable="true">参与微信支付核心体验设计，优化支付流程。</p>
+                <div draggable="true" class="inner-draggable">
+                    <span class="inner-drag-handle" title="拖拽移动此内容块">⠿</span>
+                    <div class="timeline-item">
+                        <div class="time-label" contenteditable="true">2017 - 2021</div>
+                        <h4 contenteditable="true">高级设计经理 · 阿里巴巴</h4>
+                        <p class="section-text" contenteditable="true">领导淘宝直播设计团队，从0搭建直播电商设计规范。</p>
+                    </div>
                 </div>
+                <div draggable="true" class="inner-draggable">
+                    <span class="inner-drag-handle" title="拖拽移动此内容块">⠿</span>
+                    <div class="timeline-item">
+                        <div class="time-label" contenteditable="true">2013 - 2017</div>
+                        <h4 contenteditable="true">资深UX设计师 · 腾讯</h4>
+                        <p class="section-text" contenteditable="true">参与微信支付核心体验设计，优化支付流程。</p>
+                    </div>
+                </div>
+                <button class="add-content-btn" onclick="addContentBlock(this)">+ 添加内容块</button>
             </div>
-            <div class="section-right">
-                <div class="media-slot">
+            <div class="section-right" data-column="right">
+                <div draggable="true" class="inner-draggable media-slot">
+                    <span class="inner-drag-handle" title="拖拽移动此内容块">⠿</span>
                     <button class="remove-media" onclick="removeMedia(this)" title="移除媒体">✕</button>
                     <div class="slot-inner" onclick="triggerUpload(this)">
                         <img src="https://images.unsplash.com/photo-1553877522-43269d4ea984?w=800&h=500&fit=crop" alt="字节跳动办公室" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" loading="lazy">
@@ -863,7 +849,8 @@
                     </div>
                     <div class="slot-label" contenteditable="true"><span class="dot-indicator dot-teal"></span>字节跳动 · 上海办公室</div>
                 </div>
-                <div class="media-slot">
+                <div draggable="true" class="inner-draggable media-slot">
+                    <span class="inner-drag-handle" title="拖拽移动此内容块">⠿</span>
                     <button class="remove-media" onclick="removeMedia(this)" title="移除媒体">✕</button>
                     <div class="slot-inner" onclick="triggerUpload(this)">
                         <img src="https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?w=800&h=500&fit=crop" alt="设计团队合影" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" loading="lazy">
@@ -872,38 +859,36 @@
                     </div>
                     <div class="slot-label" contenteditable="true"><span class="dot-indicator dot-coral"></span>设计团队合影</div>
                 </div>
+                <button class="add-content-btn" onclick="addContentBlock(this)">+ 添加内容块</button>
             </div>
         </div>
 
         <!-- 项目案例 -->
         <div class="section-block" id="projects" draggable="true">
-            <span class="drag-handle" title="拖拽移动板块">⋮⋮</span>
-            <div class="section-left accent-coral">
-                <div class="section-title" contenteditable="true">🚀 项目案例</div>
-                <div class="section-text">
-                    <p contenteditable="true"><strong>抖音电商设计系统</strong> — 从0到1构建完整设计语言，组件库包含200+组件。</p>
-                    <p contenteditable="true"><strong>淘宝直播互动设计</strong> — 创新直播礼物特效与连麦交互。</p>
-                    <p contenteditable="true"><strong>微信支付体验优化</strong> — 重构支付流程，年交易额增长显著。</p>
+            <span class="drag-handle" title="拖拽移动整个板块">⋮⋮</span>
+            <div class="section-left" data-column="left">
+                <div draggable="true" class="inner-draggable">
+                    <span class="inner-drag-handle" title="拖拽移动此内容块">⠿</span>
+                    <div class="section-title" contenteditable="true">🚀 项目案例</div>
                 </div>
-                <div class="tag-list" id="projectTags">
-                    <span class="tag" contenteditable="true">设计系统<span class="remove-tag" onclick="removeTag(this)">✕</span></span>
-                    <span class="tag" contenteditable="true">电商设计<span class="remove-tag" onclick="removeTag(this)">✕</span></span>
-                    <span class="tag" contenteditable="true">直播交互<span class="remove-tag" onclick="removeTag(this)">✕</span></span>
-                    <span class="tag" contenteditable="true">AI设计<span class="remove-tag" onclick="removeTag(this)">✕</span></span>
-                </div>
-            </div>
-            <div class="section-right">
-                <div class="media-slot">
-                    <button class="remove-media" onclick="removeMedia(this)" title="移除媒体">✕</button>
-                    <div class="slot-inner" onclick="triggerUpload(this)">
-                        <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&h=500&fit=crop" alt="设计系统截图" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" loading="lazy">
-                        <div class="media-placeholder" style="display:none"><span>📱</span><span>设计系统界面</span></div>
-                        <input type="file" accept="image/*" style="display:none" onchange="handleImageUpload(this)">
+                <div draggable="true" class="inner-draggable">
+                    <span class="inner-drag-handle" title="拖拽移动此内容块">⠿</span>
+                    <div class="section-text">
+                        <p contenteditable="true"><strong>抖音电商设计系统</strong> — 从0到1构建完整设计语言，组件库包含200+组件。</p>
                     </div>
-                    <div class="slot-label" contenteditable="true"><span class="dot-indicator dot-coral"></span>抖音电商设计系统界面</div>
                 </div>
-                <div class="media-slot">
-                    <button class="remove-media" onclick="removeMedia(this)" title="移除媒体">✕</button>
-                    <div class="slot-inner" onclick="triggerUpload(this)">
-                        <video src="" poster="https://images.unsplash.com/photo-1611162617474-5b21e879e113?w=800&h=500&fit=crop" controls preload="metadata" style="display:none" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"></video>
-                        <div class="media-placeholder"><span>🎥</span><span>项目演示视频</span><span style="font-size:0.75rem">点击上传视频</span></
+                <div draggable="true" class="inner-draggable">
+                    <span class="inner-drag-handle" title="拖拽移动此内容块">⠿</span>
+                    <div class="section-text">
+                        <p contenteditable="true"><strong>淘宝直播互动设计</strong> — 创新直播礼物特效与连麦交互。</p>
+                    </div>
+                </div>
+                <div draggable="true" class="inner-draggable">
+                    <span class="inner-drag-handle" title="拖拽移动此内容块">⠿</span>
+                    <div class="section-text">
+                        <p contenteditable="true"><strong>微信支付体验优化</strong> — 重构支付流程，年交易额增长显著。</p>
+                    </div>
+                </div>
+                <div draggable="true" class="inner-draggable">
+                    <span class="inner-drag-handle" title="拖拽移动此内容块">⠿</span>
+                    <
