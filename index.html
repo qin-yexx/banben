@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>李明远 - 产品设计总监</title>
+    <title>李明远 - 产品设计总监 | 可编辑简历</title>
     <style>
         :root {
             --bg-cream: #faf8f5;
@@ -17,26 +17,23 @@
             --accent-purple: #7c5cfc;
             --accent-gold: #f0a500;
             --accent-rose: #e84a7a;
-            --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.04);
-            --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.06);
-            --shadow-lg: 0 8px 32px rgba(0, 0, 0, 0.08);
+            --shadow-sm: 0 2px 8px rgba(0,0,0,0.04);
+            --shadow-md: 0 4px 16px rgba(0,0,0,0.06);
+            --shadow-lg: 0 8px 32px rgba(0,0,0,0.08);
             --radius-md: 12px;
             --radius-lg: 16px;
             --radius-xl: 20px;
-            --transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            --transition: 0.3s cubic-bezier(0.4,0,0.2,1);
         }
-
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
-
         html {
             scroll-behavior: smooth;
             scroll-padding-top: 80px;
         }
-
         body {
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif;
             background: var(--bg-cream);
@@ -44,14 +41,36 @@
             line-height: 1.7;
         }
 
+        /* 编辑模式指示器 */
+        .edit-mode-indicator {
+            position: fixed;
+            top: 12px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 200;
+            background: #1a1a2e;
+            color: #fff;
+            padding: 6px 20px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            pointer-events: none;
+            opacity: 0;
+            transition: opacity 0.3s;
+            letter-spacing: 0.03em;
+        }
+        .edit-mode-indicator.active {
+            opacity: 1;
+        }
+
         /* 导航 */
         .top-nav {
             position: sticky;
             top: 0;
             z-index: 100;
-            background: rgba(255, 255, 255, 0.92);
+            background: rgba(255,255,255,0.92);
             backdrop-filter: blur(20px);
-            border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+            border-bottom: 1px solid rgba(0,0,0,0.06);
             padding: 0 24px;
         }
         .nav-inner {
@@ -72,6 +91,13 @@
             display: flex;
             align-items: center;
             gap: 8px;
+            cursor: pointer;
+            padding: 4px 8px;
+            border-radius: 6px;
+            transition: var(--transition);
+        }
+        .nav-logo:hover {
+            background: rgba(74,144,217,0.06);
         }
         .nav-logo .dot {
             width: 8px;
@@ -93,10 +119,11 @@
             padding: 6px 12px;
             border-radius: 20px;
             transition: var(--transition);
+            cursor: pointer;
         }
         .nav-links a:hover {
             color: var(--accent-blue);
-            background: rgba(74, 144, 217, 0.06);
+            background: rgba(74,144,217,0.06);
         }
         .nav-cta {
             background: var(--accent-blue) !important;
@@ -109,11 +136,59 @@
             background: #3a7bc8 !important;
         }
 
+        /* 编辑工具栏 */
+        .edit-toolbar {
+            position: fixed;
+            bottom: 24px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 150;
+            background: #1a1a2e;
+            border-radius: 28px;
+            padding: 8px 16px;
+            display: flex;
+            gap: 8px;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.2);
+        }
+        .edit-toolbar button {
+            background: rgba(255,255,255,0.1);
+            color: #fff;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 0.85rem;
+            font-weight: 500;
+            transition: var(--transition);
+            white-space: nowrap;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+        .edit-toolbar button:hover {
+            background: rgba(255,255,255,0.2);
+        }
+        .edit-toolbar button.active {
+            background: var(--accent-teal);
+        }
+        .edit-toolbar button.danger {
+            background: rgba(255,107,107,0.3);
+        }
+        .edit-toolbar button.danger:hover {
+            background: var(--accent-coral);
+        }
+        .edit-toolbar button.primary {
+            background: var(--accent-blue);
+        }
+        .edit-toolbar button.primary:hover {
+            background: #3a7bc8;
+        }
+
         /* 主容器 */
         .main-container {
             max-width: 1400px;
             margin: 0 auto;
-            padding: 20px 24px 80px;
+            padding: 20px 24px 120px;
         }
 
         /* Hero */
@@ -124,6 +199,7 @@
             padding: 40px 0 60px;
             min-height: 60vh;
             flex-wrap: wrap;
+            position: relative;
         }
         .hero-left {
             flex: 1;
@@ -138,11 +214,25 @@
             font-size: 0.85rem;
             font-weight: 600;
             margin-bottom: 16px;
+            cursor: text;
+            outline: none;
+            transition: var(--transition);
+        }
+        .hero-tag:focus {
+            box-shadow: 0 0 0 3px rgba(46,196,182,0.3);
         }
         .hero-name {
             font-size: 3rem;
             font-weight: 800;
             margin-bottom: 12px;
+            cursor: text;
+            outline: none;
+            padding: 2px 4px;
+            border-radius: 4px;
+            transition: var(--transition);
+        }
+        .hero-name:focus {
+            background: rgba(74,144,217,0.06);
         }
         .hero-name .accent {
             color: var(--accent-blue);
@@ -151,6 +241,14 @@
             font-size: 1.2rem;
             color: var(--text-gray);
             margin-bottom: 24px;
+            cursor: text;
+            outline: none;
+            padding: 2px 4px;
+            border-radius: 4px;
+            transition: var(--transition);
+        }
+        .hero-title:focus {
+            background: rgba(0,0,0,0.03);
         }
         .hero-contact {
             display: flex;
@@ -166,6 +264,13 @@
             padding: 10px 16px;
             border-radius: 24px;
             box-shadow: var(--shadow-sm);
+            cursor: text;
+            outline: none;
+            transition: var(--transition);
+        }
+        .hero-contact span:focus {
+            box-shadow: var(--shadow-md);
+            transform: translateY(-1px);
         }
         .hero-right {
             flex: 1;
@@ -207,6 +312,7 @@
             gap: 8px;
             color: #999;
             z-index: 1;
+            pointer-events: none;
         }
         .media-placeholder .icon-large {
             font-size: 3rem;
@@ -215,12 +321,17 @@
             position: absolute;
             bottom: 12px;
             left: 12px;
-            background: rgba(0, 0, 0, 0.6);
+            background: rgba(0,0,0,0.6);
             color: #fff;
             padding: 4px 12px;
             border-radius: 16px;
             font-size: 0.75rem;
             z-index: 2;
+            cursor: text;
+            outline: none;
+        }
+        .media-label:focus {
+            background: rgba(0,0,0,0.8);
         }
 
         /* 板块 */
@@ -230,6 +341,41 @@
             margin-bottom: 40px;
             flex-wrap: wrap;
             scroll-margin-top: 80px;
+            position: relative;
+            transition: var(--transition);
+        }
+        .section-block.drag-over {
+            outline: 3px dashed var(--accent-blue);
+            outline-offset: 8px;
+            border-radius: var(--radius-lg);
+        }
+        .section-block.drag-handle-active {
+            cursor: grabbing;
+        }
+        .section-block .drag-handle {
+            position: absolute;
+            top: 8px;
+            right: 8px;
+            z-index: 10;
+            width: 28px;
+            height: 28px;
+            border-radius: 6px;
+            background: rgba(0,0,0,0.06);
+            cursor: grab;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.9rem;
+            opacity: 0;
+            transition: opacity 0.3s;
+            user-select: none;
+        }
+        .section-block:hover .drag-handle {
+            opacity: 1;
+        }
+        .section-block .drag-handle:active {
+            cursor: grabbing;
+            background: rgba(0,0,0,0.12);
         }
         .section-block.reverse {
             flex-direction: row-reverse;
@@ -243,6 +389,7 @@
             box-shadow: var(--shadow-md);
             border-left: 5px solid var(--accent-blue);
             position: relative;
+            transition: var(--transition);
         }
         .section-left.accent-teal {
             border-left-color: var(--accent-teal);
@@ -273,10 +420,26 @@
             display: flex;
             align-items: center;
             gap: 10px;
+            cursor: text;
+            outline: none;
+            padding: 2px 4px;
+            border-radius: 4px;
+            transition: var(--transition);
+        }
+        .section-title:focus {
+            background: rgba(74,144,217,0.04);
         }
         .section-subtitle {
             color: var(--text-gray);
             margin-bottom: 12px;
+            cursor: text;
+            outline: none;
+            padding: 2px 4px;
+            border-radius: 4px;
+            transition: var(--transition);
+        }
+        .section-subtitle:focus {
+            background: rgba(0,0,0,0.03);
         }
         .section-text {
             color: var(--text-gray);
@@ -285,6 +448,14 @@
         }
         .section-text p {
             margin-bottom: 10px;
+            cursor: text;
+            outline: none;
+            padding: 2px 4px;
+            border-radius: 4px;
+            transition: var(--transition);
+        }
+        .section-text p:focus {
+            background: rgba(0,0,0,0.03);
         }
         .media-slot {
             background: var(--bg-white);
@@ -292,6 +463,29 @@
             overflow: hidden;
             box-shadow: var(--shadow-md);
             cursor: pointer;
+            position: relative;
+        }
+        .media-slot .remove-media {
+            position: absolute;
+            top: 8px;
+            right: 8px;
+            z-index: 10;
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            background: rgba(255,107,107,0.8);
+            color: #fff;
+            border: none;
+            cursor: pointer;
+            font-size: 0.7rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+        .media-slot:hover .remove-media {
+            opacity: 1;
         }
         .slot-inner {
             aspect-ratio: 16/10;
@@ -322,11 +516,18 @@
             align-items: center;
             gap: 6px;
             background: #fafbfc;
+            cursor: text;
+            outline: none;
+            transition: var(--transition);
+        }
+        .slot-label:focus {
+            background: #f0f3f7;
         }
         .dot-indicator {
             width: 8px;
             height: 8px;
             border-radius: 50%;
+            flex-shrink: 0;
         }
         .dot-blue {
             background: var(--accent-blue);
@@ -351,20 +552,64 @@
             padding: 6px 14px;
             border-radius: 16px;
             font-size: 0.85rem;
+            cursor: text;
+            outline: none;
+            transition: var(--transition);
+            position: relative;
+        }
+        .tag:focus {
+            background: var(--accent-blue);
+            color: #fff;
+        }
+        .tag .remove-tag {
+            position: absolute;
+            top: -6px;
+            right: -6px;
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            background: var(--accent-coral);
+            color: #fff;
+            border: none;
+            cursor: pointer;
+            font-size: 0.6rem;
+            display: none;
+            align-items: center;
+            justify-content: center;
+        }
+        .tag:hover .remove-tag {
+            display: flex;
         }
         .timeline-item {
             padding-left: 16px;
             border-left: 2px solid #e0e0e0;
             margin-bottom: 16px;
+            position: relative;
         }
         .time-label {
             font-size: 0.8rem;
             color: var(--text-light);
             margin-bottom: 4px;
+            cursor: text;
+            outline: none;
+            padding: 2px 4px;
+            border-radius: 4px;
+            transition: var(--transition);
+        }
+        .time-label:focus {
+            background: rgba(0,0,0,0.03);
         }
         .timeline-item h4 {
             font-weight: 600;
             margin-bottom: 4px;
+            cursor: text;
+            outline: none;
+            padding: 2px 4px;
+            border-radius: 4px;
+            transition: var(--transition);
+        }
+        .timeline-item h4:focus {
+            background: rgba(0,0,0,0.03);
         }
         .highlight-box {
             background: #f8fafc;
@@ -372,6 +617,36 @@
             padding: 16px;
             margin-top: 12px;
             border: 1px solid #e8ecf1;
+            cursor: text;
+            outline: none;
+            transition: var(--transition);
+        }
+        .highlight-box:focus {
+            background: #f0f4f8;
+            border-color: var(--accent-blue);
+        }
+
+        /* 添加板块按钮 */
+        .add-section-area {
+            text-align: center;
+            padding: 20px;
+            margin-bottom: 40px;
+        }
+        .add-section-btn {
+            background: var(--bg-white);
+            border: 2px dashed #d0d5dd;
+            border-radius: var(--radius-lg);
+            padding: 16px 32px;
+            cursor: pointer;
+            font-size: 1rem;
+            color: var(--text-gray);
+            transition: var(--transition);
+            font-weight: 500;
+        }
+        .add-section-btn:hover {
+            border-color: var(--accent-blue);
+            color: var(--accent-blue);
+            background: rgba(74,144,217,0.03);
         }
 
         /* 滚动按钮 */
@@ -417,14 +692,30 @@
             background: var(--accent-coral);
         }
 
+        /* 可编辑提示 */
+        [contenteditable="true"]:hover {
+            outline: 1px dashed rgba(74,144,217,0.2);
+            outline-offset: 2px;
+        }
+        [contenteditable="true"]:focus {
+            outline: 2px solid var(--accent-blue);
+            outline-offset: 2px;
+            background: rgba(74,144,217,0.03);
+        }
+
         /* 页脚 */
         .footer {
             text-align: center;
             padding: 40px 24px;
             color: var(--text-light);
             font-size: 0.85rem;
-            border-top: 1px solid rgba(0, 0, 0, 0.06);
+            border-top: 1px solid rgba(0,0,0,0.06);
             margin-top: 40px;
+            cursor: text;
+            outline: none;
+        }
+        .footer:focus {
+            background: rgba(0,0,0,0.02);
         }
 
         @media (max-width: 768px) {
@@ -446,51 +737,59 @@
             .nav-links a {
                 padding: 4px 8px;
             }
+            .edit-toolbar {
+                bottom: 12px;
+                padding: 6px 12px;
+                gap: 4px;
+                border-radius: 24px;
+            }
+            .edit-toolbar button {
+                padding: 6px 10px;
+                font-size: 0.75rem;
+            }
         }
     </style>
 </head>
 <body>
 
+    <!-- 编辑模式指示器 -->
+    <div class="edit-mode-indicator" id="editModeIndicator">✏️ 编辑模式已开启 - 点击任意文字即可编辑</div>
+
     <!-- 导航 -->
     <nav class="top-nav">
         <div class="nav-inner">
-            <a href="#" class="nav-logo"><span class="dot"></span>李明远</a>
-            <ul class="nav-links">
-                <li><a href="#about">关于我</a></li>
-                <li><a href="#experience">工作经历</a></li>
-                <li><a href="#projects">项目案例</a></li>
-                <li><a href="#education">教育背景</a></li>
-                <li><a href="#skills">专业技能</a></li>
-                <li><a href="#contact-section" class="nav-cta">联系我</a></li>
+            <span class="nav-logo" contenteditable="true" id="navLogo"><span class="dot"></span>李明远</span>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="#about" contenteditable="true">关于我</a></li>
+                <li><a href="#experience" contenteditable="true">工作经历</a></li>
+                <li><a href="#projects" contenteditable="true">项目案例</a></li>
+                <li><a href="#education" contenteditable="true">教育背景</a></li>
+                <li><a href="#skills" contenteditable="true">专业技能</a></li>
+                <li><a href="#contact-section" class="nav-cta" contenteditable="true">联系我</a></li>
             </ul>
         </div>
     </nav>
 
-    <div class="main-container">
+    <div class="main-container" id="mainContainer">
 
         <!-- Hero -->
-        <section class="hero-section">
+        <section class="hero-section" id="heroSection" draggable="false">
             <div class="hero-left">
-                <span class="hero-tag">🚀 开放工作机会</span>
-                <h1 class="hero-name">李明远<span class="accent">.</span></h1>
-                <p class="hero-title">资深产品设计总监 · 用户体验策略专家</p>
+                <span class="hero-tag" contenteditable="true">🚀 开放工作机会</span>
+                <h1 class="hero-name" contenteditable="true">李明远<span class="accent">.</span></h1>
+                <p class="hero-title" contenteditable="true">资深产品设计总监 · 用户体验策略专家</p>
                 <div class="hero-contact">
-                    <span>📧 li.mingyuan@design.studio</span>
-                    <span>📱 +86 138-8888-6666</span>
-                    <span>📍 上海 · 中国</span>
+                    <span contenteditable="true">📧 li.mingyuan@design.studio</span>
+                    <span contenteditable="true">📱 +86 138-8888-6666</span>
+                    <span contenteditable="true">📍 上海 · 中国</span>
                 </div>
             </div>
             <div class="hero-right">
                 <div class="hero-media-card">
                     <div class="media-wrapper" onclick="triggerUpload(this)">
-                        <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=600&h=450&fit=crop&crop=face"
-                        alt="个人照片"
-                        onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"
-                        loading="lazy">
-                        <div class="media-placeholder" style="display:none">
-                            <span class="icon-large">📷</span><span>点击上传照片</span>
-                        </div>
-                        <span class="media-label">📸 个人形象照</span>
+                        <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=600&h=450&fit=crop&crop=face" alt="个人照片" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" loading="lazy">
+                        <div class="media-placeholder" style="display:none"><span class="icon-large">📷</span><span>点击上传照片</span></div>
+                        <span class="media-label" contenteditable="true">📸 个人形象照</span>
                         <input type="file" accept="image/*" style="display:none" onchange="handleImageUpload(this)">
                     </div>
                 </div>
@@ -498,379 +797,113 @@
         </section>
 
         <!-- 关于我 -->
-        <div class="section-block" id="about">
+        <div class="section-block" id="about" draggable="true">
+            <span class="drag-handle" title="拖拽移动板块">⋮⋮</span>
             <div class="section-left">
-                <div class="section-title">👤 关于我</div>
-                <p class="section-subtitle">用设计连接用户与产品</p>
+                <div class="section-title" contenteditable="true">👤 关于我</div>
+                <p class="section-subtitle" contenteditable="true">用设计连接用户与产品</p>
                 <div class="section-text">
-                    <p>拥有<strong>12年+</strong>产品设计经验，曾在字节跳动、阿里巴巴担任高级设计管理职位。擅长从0到1构建设计系统，带领团队交付了多款千万级用户产品。</p>
-                    <p>坚信<strong>数据驱动设计</strong>与<strong>用户同理心</strong>的平衡是创造卓越产品的关键。</p>
+                    <p contenteditable="true">拥有<strong>12年+</strong>产品设计经验，曾在字节跳动、阿里巴巴担任高级设计管理职位。擅长从0到1构建设计系统，带领团队交付了多款千万级用户产品。</p>
+                    <p contenteditable="true">坚信<strong>数据驱动设计</strong>与<strong>用户同理心</strong>的平衡是创造卓越产品的关键。</p>
                 </div>
-                <div class="highlight-box">
+                <div class="highlight-box" contenteditable="true">
                     <strong>🏆 核心成就：</strong>主导设计的产品累计用户超<strong>5000万</strong>，获红点设计奖提名。
                 </div>
             </div>
             <div class="section-right">
                 <div class="media-slot">
+                    <button class="remove-media" onclick="removeMedia(this)" title="移除媒体">✕</button>
                     <div class="slot-inner" onclick="triggerUpload(this)">
-                        <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?w=800&h=500&fit=crop"
-                        alt="团队工作照"
-                        onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"
-                        loading="lazy">
+                        <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?w=800&h=500&fit=crop" alt="团队工作照" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" loading="lazy">
                         <div class="media-placeholder" style="display:none"><span>🖼️</span><span>团队工作照片</span></div>
                         <input type="file" accept="image/*" style="display:none" onchange="handleImageUpload(this)">
                     </div>
-                    <div class="slot-label"><span class="dot-indicator dot-blue"></span>团队协作瞬间</div>
+                    <div class="slot-label" contenteditable="true"><span class="dot-indicator dot-blue"></span>团队协作瞬间</div>
                 </div>
                 <div class="media-slot">
+                    <button class="remove-media" onclick="removeMedia(this)" title="移除媒体">✕</button>
                     <div class="slot-inner" onclick="triggerUpload(this)">
-                        <video src="" poster="https://images.unsplash.com/photo-1559526324-593bc073d938?w=800&h=500&fit=crop"
-                        controls preload="metadata" style="display:none"
-                    onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"></video>
-                    <div class="media-placeholder"><span>🎬</span><span>个人介绍视频</span><span style="font-size:0.75rem">点击上传视频</span></div>
-                    <input type="file" accept="video/*" style="display:none" onchange="handleVideoUpload(this)">
+                        <video src="" poster="https://images.unsplash.com/photo-1559526324-593bc073d938?w=800&h=500&fit=crop" controls preload="metadata" style="display:none" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"></video>
+                        <div class="media-placeholder"><span>🎬</span><span>个人介绍视频</span><span style="font-size:0.75rem">点击上传视频</span></div>
+                        <input type="file" accept="video/*" style="display:none" onchange="handleVideoUpload(this)">
+                    </div>
+                    <div class="slot-label" contenteditable="true"><span class="dot-indicator dot-teal"></span>个人介绍视频</div>
                 </div>
-                <div class="slot-label"><span class="dot-indicator dot-teal"></span>个人介绍视频</div>
             </div>
         </div>
 
         <!-- 工作经历 -->
-        <div class="section-block reverse" id="experience">
+        <div class="section-block reverse" id="experience" draggable="true">
+            <span class="drag-handle" title="拖拽移动板块">⋮⋮</span>
             <div class="section-left accent-teal">
-                <div class="section-title">💼 工作经历</div>
+                <div class="section-title" contenteditable="true">💼 工作经历</div>
                 <div class="timeline-item">
-                    <div class="time-label">2021 - 至今</div>
-                    <h4>产品设计总监 · 字节跳动</h4>
-                    <p class="section-text">负责抖音电商设计团队，管理15人团队，主导设计系统升级。</p>
+                    <div class="time-label" contenteditable="true">2021 - 至今</div>
+                    <h4 contenteditable="true">产品设计总监 · 字节跳动</h4>
+                    <p class="section-text" contenteditable="true">负责抖音电商设计团队，管理15人团队，主导设计系统升级。</p>
                 </div>
                 <div class="timeline-item">
-                    <div class="time-label">2017 - 2021</div>
-                    <h4>高级设计经理 · 阿里巴巴</h4>
-                    <p class="section-text">领导淘宝直播设计团队，从0搭建直播电商设计规范。</p>
+                    <div class="time-label" contenteditable="true">2017 - 2021</div>
+                    <h4 contenteditable="true">高级设计经理 · 阿里巴巴</h4>
+                    <p class="section-text" contenteditable="true">领导淘宝直播设计团队，从0搭建直播电商设计规范。</p>
                 </div>
                 <div class="timeline-item">
-                    <div class="time-label">2013 - 2017</div>
-                    <h4>资深UX设计师 · 腾讯</h4>
-                    <p class="section-text">参与微信支付核心体验设计，优化支付流程。</p>
+                    <div class="time-label" contenteditable="true">2013 - 2017</div>
+                    <h4 contenteditable="true">资深UX设计师 · 腾讯</h4>
+                    <p class="section-text" contenteditable="true">参与微信支付核心体验设计，优化支付流程。</p>
                 </div>
             </div>
             <div class="section-right">
                 <div class="media-slot">
+                    <button class="remove-media" onclick="removeMedia(this)" title="移除媒体">✕</button>
                     <div class="slot-inner" onclick="triggerUpload(this)">
-                        <img src="https://images.unsplash.com/photo-1553877522-43269d4ea984?w=800&h=500&fit=crop"
-                        alt="字节跳动办公室"
-                        onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"
-                        loading="lazy">
+                        <img src="https://images.unsplash.com/photo-1553877522-43269d4ea984?w=800&h=500&fit=crop" alt="字节跳动办公室" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" loading="lazy">
                         <div class="media-placeholder" style="display:none"><span>🏢</span><span>字节跳动办公室</span></div>
                         <input type="file" accept="image/*" style="display:none" onchange="handleImageUpload(this)">
                     </div>
-                    <div class="slot-label"><span class="dot-indicator dot-teal"></span>字节跳动 · 上海办公室</div>
+                    <div class="slot-label" contenteditable="true"><span class="dot-indicator dot-teal"></span>字节跳动 · 上海办公室</div>
                 </div>
                 <div class="media-slot">
+                    <button class="remove-media" onclick="removeMedia(this)" title="移除媒体">✕</button>
                     <div class="slot-inner" onclick="triggerUpload(this)">
-                        <img src="https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?w=800&h=500&fit=crop"
-                        alt="设计团队合影"
-                        onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"
-                        loading="lazy">
+                        <img src="https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?w=800&h=500&fit=crop" alt="设计团队合影" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" loading="lazy">
                         <div class="media-placeholder" style="display:none"><span>👥</span><span>设计团队合影</span></div>
                         <input type="file" accept="image/*" style="display:none" onchange="handleImageUpload(this)">
                     </div>
-                    <div class="slot-label"><span class="dot-indicator dot-coral"></span>设计团队合影</div>
+                    <div class="slot-label" contenteditable="true"><span class="dot-indicator dot-coral"></span>设计团队合影</div>
                 </div>
             </div>
         </div>
 
         <!-- 项目案例 -->
-        <div class="section-block" id="projects">
+        <div class="section-block" id="projects" draggable="true">
+            <span class="drag-handle" title="拖拽移动板块">⋮⋮</span>
             <div class="section-left accent-coral">
-                <div class="section-title">🚀 项目案例</div>
+                <div class="section-title" contenteditable="true">🚀 项目案例</div>
                 <div class="section-text">
-                    <p><strong>抖音电商设计系统</strong> — 从0到1构建完整设计语言，组件库包含200+组件。</p>
-                    <p><strong>淘宝直播互动设计</strong> — 创新直播礼物特效与连麦交互。</p>
-                    <p><strong>微信支付体验优化</strong> — 重构支付流程，年交易额增长显著。</p>
+                    <p contenteditable="true"><strong>抖音电商设计系统</strong> — 从0到1构建完整设计语言，组件库包含200+组件。</p>
+                    <p contenteditable="true"><strong>淘宝直播互动设计</strong> — 创新直播礼物特效与连麦交互。</p>
+                    <p contenteditable="true"><strong>微信支付体验优化</strong> — 重构支付流程，年交易额增长显著。</p>
                 </div>
-                <div class="tag-list">
-                    <span class="tag">设计系统</span><span class="tag">电商设计</span><span class="tag">直播交互</span><span class="tag">AI设计</span>
+                <div class="tag-list" id="projectTags">
+                    <span class="tag" contenteditable="true">设计系统<span class="remove-tag" onclick="removeTag(this)">✕</span></span>
+                    <span class="tag" contenteditable="true">电商设计<span class="remove-tag" onclick="removeTag(this)">✕</span></span>
+                    <span class="tag" contenteditable="true">直播交互<span class="remove-tag" onclick="removeTag(this)">✕</span></span>
+                    <span class="tag" contenteditable="true">AI设计<span class="remove-tag" onclick="removeTag(this)">✕</span></span>
                 </div>
             </div>
             <div class="section-right">
                 <div class="media-slot">
+                    <button class="remove-media" onclick="removeMedia(this)" title="移除媒体">✕</button>
                     <div class="slot-inner" onclick="triggerUpload(this)">
-                        <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&h=500&fit=crop"
-                        alt="设计系统截图"
-                        onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"
-                        loading="lazy">
+                        <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&h=500&fit=crop" alt="设计系统截图" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" loading="lazy">
                         <div class="media-placeholder" style="display:none"><span>📱</span><span>设计系统界面</span></div>
                         <input type="file" accept="image/*" style="display:none" onchange="handleImageUpload(this)">
                     </div>
-                    <div class="slot-label"><span class="dot-indicator dot-coral"></span>抖音电商设计系统界面</div>
+                    <div class="slot-label" contenteditable="true"><span class="dot-indicator dot-coral"></span>抖音电商设计系统界面</div>
                 </div>
                 <div class="media-slot">
+                    <button class="remove-media" onclick="removeMedia(this)" title="移除媒体">✕</button>
                     <div class="slot-inner" onclick="triggerUpload(this)">
-                        <video src="" poster="https://images.unsplash.com/photo-1611162617474-5b21e879e113?w=800&h=500&fit=crop"
-                        controls preload="metadata" style="display:none"
-                    onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"></video>
-                    <div class="media-placeholder"><span>🎥</span><span>项目演示视频</span><span style="font-size:0.75rem">点击上传视频</span></div>
-                    <input type="file" accept="video/*" style="display:none" onchange="handleVideoUpload(this)">
-                </div>
-                <div class="slot-label"><span class="dot-indicator dot-purple"></span>项目交互演示视频</div>
-            </div>
-        </div>
-
-        <!-- 教育背景 -->
-        <div class="section-block reverse" id="education">
-            <div class="section-left accent-purple">
-                <div class="section-title">🎓 教育背景</div>
-                <div class="timeline-item">
-                    <div class="time-label">2010 - 2013</div>
-                    <h4>同济大学 · 设计艺术学硕士</h4>
-                    <p class="section-text">研究方向：人机交互与用户体验设计，发表国际论文3篇。</p>
-                </div>
-                <div class="timeline-item">
-                    <div class="time-label">2006 - 2010</div>
-                    <h4>浙江大学 · 工业设计学士</h4>
-                    <p class="section-text">优秀毕业生，获国家奖学金。</p>
-                </div>
-            </div>
-            <div class="section-right">
-                <div class="media-slot">
-                    <div class="slot-inner" onclick="triggerUpload(this)">
-                        <img src="https://images.unsplash.com/photo-1562774053-701939374585?w=800&h=500&fit=crop"
-                        alt="同济大学"
-                        onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"
-                        loading="lazy">
-                        <div class="media-placeholder" style="display:none"><span>🏛️</span><span>同济大学校园</span></div>
-                        <input type="file" accept="image/*" style="display:none" onchange="handleImageUpload(this)">
-                    </div>
-                    <div class="slot-label"><span class="dot-indicator dot-purple"></span>同济大学</div>
-                </div>
-                <div class="media-slot">
-                    <div class="slot-inner" onclick="triggerUpload(this)">
-                        <img src="https://images.unsplash.com/photo-1541339907198-e08756dedf3f?w=800&h=500&fit=crop"
-                        alt="浙江大学"
-                        onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"
-                        loading="lazy">
-                        <div class="media-placeholder" style="display:none"><span>🏫</span><span>浙江大学校园</span></div>
-                        <input type="file" accept="image/*" style="display:none" onchange="handleImageUpload(this)">
-                    </div>
-                    <div class="slot-label"><span class="dot-indicator dot-blue"></span>浙江大学</div>
-                </div>
-            </div>
-        </div>
-
-        <!-- 专业技能 -->
-        <div class="section-block" id="skills">
-            <div class="section-left accent-gold">
-                <div class="section-title">🛠️ 专业技能</div>
-                <div class="section-text">
-                    <p><strong>设计工具：</strong>Figma, Sketch, Adobe XD, Framer, Principle</p>
-                    <p><strong>用户研究：</strong>用户访谈、可用性测试、A/B测试、数据分析</p>
-                    <p><strong>管理能力：</strong>设计团队管理、跨部门协作、项目规划</p>
-                </div>
-                <div class="tag-list">
-                    <span class="tag">Figma</span><span class="tag">Sketch</span><span class="tag">Prototyping</span>
-                    <span class="tag">Design System</span><span class="tag">UX Research</span><span class="tag">Team Lead</span>
-                </div>
-            </div>
-            <div class="section-right">
-                <div class="media-slot">
-                    <div class="slot-inner" onclick="triggerUpload(this)">
-                        <img src="https://images.unsplash.com/photo-1581291518633-83b4eef92095?w=800&h=500&fit=crop"
-                        alt="设计工具"
-                        onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"
-                        loading="lazy">
-                        <div class="media-placeholder" style="display:none"><span>🎨</span><span>设计工具展示</span></div>
-                        <input type="file" accept="image/*" style="display:none" onchange="handleImageUpload(this)">
-                    </div>
-                    <div class="slot-label"><span class="dot-indicator dot-blue"></span>常用设计工具</div>
-                </div>
-            </div>
-        </div>
-
-        <!-- 联系我 -->
-        <div class="section-block" id="contact-section" style="margin-bottom:20px">
-            <div class="section-left accent-rose" style="flex:1; min-width:280px;">
-                <div class="section-title">📬 联系我</div>
-                <div class="section-text">
-                    <p>📧 邮箱：li.mingyuan@design.studio</p>
-                    <p>📱 电话：+86 138-8888-6666</p>
-                    <p>💼 LinkedIn：linkedin.com/in/mingyuanli</p>
-                    <p>🌐 作品集：mingyuan.design</p>
-                </div>
-                <div class="highlight-box" style="margin-top:16px">
-                    期待与您合作，共同创造卓越的产品体验！
-                </div>
-            </div>
-        </div>
-
-    </div>
-
-    <!-- 滚动按钮 -->
-    <div class="scroll-indicator">
-        <button class="scroll-btn auto-scroll-btn" id="autoScrollBtn" onclick="toggleAutoScroll()" title="自动滚动浏览">
-            ⬇️ 自动浏览
-        </button>
-        <button class="scroll-btn" onclick="window.scrollTo({top:0,behavior:'smooth'})" title="回到顶部">⬆️</button>
-    </div>
-
-    <!-- 页脚 -->
-    <div class="footer">
-        © 2024 李明远 · 产品设计总监 · 保留所有权利
-    </div>
-
-    <script>
-        // 文件上传处理
-        function triggerUpload(container) {
-            const input = container.querySelector('input[type="file"]');
-            if (input) input.click();
-        }
-
-        function handleImageUpload(input) {
-            const file = input.files[0];
-            if (!file) return;
-            const reader = new FileReader();
-            reader.onload = function(e) {
-                const container = input.parentElement;
-                // 移除旧图片
-                const oldImg = container.querySelector('img');
-                if (oldImg) oldImg.style.display = 'none';
-                // 创建新图片
-                let img = container.querySelector('img.uploaded');
-                if (!img) {
-                    img = document.createElement('img');
-                    img.className = 'uploaded';
-                    img.style.cssText = 'width:100%;height:100%;object-fit:cover;position:absolute;top:0;left:0;';
-                    container.appendChild(img);
-                }
-                img.src = e.target.result;
-                img.style.display = 'block';
-                // 隐藏占位符
-                const placeholder = container.querySelector('.media-placeholder');
-                if (placeholder) placeholder.style.display = 'none';
-            };
-            reader.readAsDataURL(file);
-        }
-
-        function handleVideoUpload(input) {
-            const file = input.files[0];
-            if (!file) return;
-            const url = URL.createObjectURL(file);
-            const container = input.parentElement;
-            // 移除旧视频
-            const oldVideo = container.querySelector('video');
-            if (oldVideo) oldVideo.style.display = 'none';
-            // 创建新视频
-            let video = container.querySelector('video.uploaded');
-            if (!video) {
-                video = document.createElement('video');
-                video.className = 'uploaded';
-                video.controls = true;
-                video.style.cssText = 'width:100%;height:100%;object-fit:cover;position:absolute;top:0;left:0;';
-                container.appendChild(video);
-            }
-            video.src = url;
-            video.style.display = 'block';
-            // 隐藏占位符
-            const placeholder = container.querySelector('.media-placeholder');
-            if (placeholder) placeholder.style.display = 'none';
-        }
-
-        // 自动滚动功能
-        let autoScrollInterval = null;
-        let isAutoScrolling = false;
-
-        function toggleAutoScroll() {
-            const btn = document.getElementById('autoScrollBtn');
-            if (isAutoScrolling) {
-                stopAutoScroll();
-                btn.textContent = '⬇️ 自动浏览';
-                btn.classList.remove('paused');
-            } else {
-                startAutoScroll();
-                btn.textContent = '⏸️ 暂停浏览';
-                btn.classList.add('paused');
-            }
-        }
-
-        function startAutoScroll() {
-            isAutoScrolling = true;
-            autoScrollInterval = setInterval(() => {
-                const currentScroll = window.scrollY;
-                const maxScroll = document.body.scrollHeight - window.innerHeight;
-                if (currentScroll >= maxScroll - 50) {
-                    // 滚动到底部，回到顶部
-                    window.scrollTo({ top: 0, behavior: 'smooth' });
-                } else {
-                    window.scrollBy({ top: 2, behavior: 'auto' });
-                }
-            }, 30);
-        }
-
-        function stopAutoScroll() {
-            isAutoScrolling = false;
-            if (autoScrollInterval) {
-                clearInterval(autoScrollInterval);
-                autoScrollInterval = null;
-            }
-        }
-
-        // 导航栏滚动效果
-        window.addEventListener('scroll', () => {
-            const nav = document.getElementById('topNav');
-            if (window.scrollY > 50) {
-                nav.classList.add('scrolled');
-            } else {
-                nav.classList.remove('scrolled');
-            }
-        });
-
-        // 用户手动滚动时暂停自动滚动
-        let scrollTimeout;
-        window.addEventListener('wheel', () => {
-            if (isAutoScrolling) {
-                stopAutoScroll();
-                const btn = document.getElementById('autoScrollBtn');
-                btn.textContent = '⬇️ 自动浏览';
-                btn.classList.remove('paused');
-                // 3秒后恢复自动滚动
-                clearTimeout(scrollTimeout);
-                scrollTimeout = setTimeout(() => {
-                    if (!isAutoScrolling) {
-                        startAutoScroll();
-                        btn.textContent = '⏸️ 暂停浏览';
-                        btn.classList.add('paused');
-                    }
-                }, 3000);
-            }
-        }, { passive: true });
-
-        // 触摸设备支持
-        window.addEventListener('touchmove', () => {
-            if (isAutoScrolling) {
-                stopAutoScroll();
-                const btn = document.getElementById('autoScrollBtn');
-                btn.textContent = '⬇️ 自动浏览';
-                btn.classList.remove('paused');
-                clearTimeout(scrollTimeout);
-                scrollTimeout = setTimeout(() => {
-                    if (!isAutoScrolling) {
-                        startAutoScroll();
-                        btn.textContent = '⏸️ 暂停浏览';
-                        btn.classList.add('paused');
-                    }
-                }, 3000);
-            }
-        }, { passive: true });
-
-        console.log('✅ 李明远简历页面已就绪');
-        console.log('📋 功能清单：');
-        console.log('  - 左右分栏布局（6大板块）');
-        console.log('  - 每个板块预留图片/视频上传区');
-        console.log('  - 自动滚动浏览（点击右下角按钮开启）');
-        console.log('  - 极简主义色块风格');
-        console.log('  - 响应式设计，适配移动端');
-        console.log('  - 粘性导航栏');
-        console.log('  - 点击媒体区可上传本地文件');
-    </script>
-</body>
-</html>
+                        <video src="" poster="https://images.unsplash.com/photo-1611162617474-5b21e879e113?w=800&h=500&fit=crop" controls preload="metadata" style="display:none" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"></video>
+                        <div class="media-placeholder"><span>🎥</span><span>项目演示视频</span><span style="font-size:0.75rem">点击上传视频</span></
