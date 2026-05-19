@@ -25,6 +25,57 @@
             box-sizing: border-box;
         }
 
+        /* ========== 新增：自动滚动控制按钮样式 ========== */
+        .auto-scroll-btn {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.85);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 2px solid var(--green);
+            cursor: pointer;
+            font-size: 1.3rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 999;
+            box-shadow: 0 4px 16px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+            color: var(--green);
+        }
+
+        .auto-scroll-btn:hover {
+            background: var(--green);
+            color: #fff;
+            transform: scale(1.1);
+            box-shadow: 0 6px 24px rgba(122,194,145,0.3);
+        }
+
+        .auto-scroll-btn.paused {
+            border-color: #e0a800;
+            color: #e0a800;
+        }
+
+        .auto-scroll-btn.paused:hover {
+            background: #e0a800;
+            color: #fff;
+        }
+
+        /* 移动端适配 */
+        @media (max-width: 640px) {
+            .auto-scroll-btn {
+                bottom: 20px;
+                right: 20px;
+                width: 44px;
+                height: 44px;
+                font-size: 1.1rem;
+            }
+        }
+
         body {
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', sans-serif;
             background: linear-gradient(160deg, #f0f9f0 0%, #fefdf5 30%, #f5f9fc 60%, #fdf5f5 100%);
@@ -483,6 +534,11 @@
 </head>
 <body>
 
+    <!-- ========== 新增：自动滚动控制按钮 ========== -->
+    <button class="auto-scroll-btn" id="autoScrollBtn" title="自动滚动浏览" onclick="toggleAutoScroll()">
+        ⏸
+    </button>
+
     <div class="container">
         <!-- 导航栏 -->
         <nav class="nav" id="navbar">
@@ -716,6 +772,128 @@
             link.addEventListener('click', () => {
                 document.getElementById('navLinks').classList.remove('open');
             });
+        });
+
+        // ========== 新增：自动滚动逻辑 ==========
+        let autoScrollInterval = null;
+        let isAutoScrolling = true; // 默认开启自动滚动
+        const SCROLL_SPEED = 0.5; // 每次滚动的像素数（越小越慢）
+        const SCROLL_INTERVAL = 30; // 滚动间隔（毫秒，越大越慢）
+        const btn = document.getElementById('autoScrollBtn');
+
+        /**
+         * 执行自动滚动
+         * 使用 requestAnimationFrame 包装定时器，确保流畅
+         */
+        function startAutoScroll() {
+            if (autoScrollInterval) return;
+
+            autoScrollInterval = setInterval(() => {
+                requestAnimationFrame(() => {
+                    const currentScroll = window.scrollY || document.documentElement.scrollTop;
+                    const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
+
+                    // 滚动到页面底部时，自动回到顶部（形成循环浏览）
+                    if (currentScroll >= maxScroll - 5) {
+                        window.scrollTo({ top: 0, behavior: 'smooth' });
+                    } else {
+                        window.scrollBy({ top: SCROLL_SPEED, behavior: 'auto' });
+                    }
+                });
+            }, SCROLL_INTERVAL);
+
+            updateButtonState();
+        }
+
+        /**
+         * 停止自动滚动
+         */
+        function stopAutoScroll() {
+            if (autoScrollInterval) {
+                clearInterval(autoScrollInterval);
+                autoScrollInterval = null;
+            }
+            updateButtonState();
+        }
+
+        /**
+         * 切换自动滚动状态
+         */
+        function toggleAutoScroll() {
+            if (isAutoScrolling) {
+                stopAutoScroll();
+                isAutoScrolling = false;
+            } else {
+                startAutoScroll();
+                isAutoScrolling = true;
+            }
+        }
+
+        /**
+         * 更新按钮图标和样式
+         */
+        function updateButtonState() {
+            if (isAutoScrolling) {
+                btn.innerHTML = '⏸'; // 暂停图标
+                btn.classList.remove('paused');
+                btn.title = '暂停自动滚动';
+            } else {
+                btn.innerHTML = '▶'; // 播放图标
+                btn.classList.add('paused');
+                btn.title = '开始自动滚动';
+            }
+        }
+
+        /**
+         * 用户手动滚动时，暂停自动滚动
+         * 使用防抖，在用户停止操作后一段时间再恢复
+         */
+        let userScrollTimeout;
+        let wasAutoScrollingBeforeUserAction = true;
+
+        window.addEventListener('wheel', handleUserScroll);
+        window.addEventListener('touchmove', handleUserScroll, { passive: true });
+        window.addEventListener('keydown', (e) => {
+            // 检测方向键和空格键等滚动相关按键
+            if (['ArrowUp', 'ArrowDown', 'ArrowLeft', 'ArrowRight', 'Space', 'PageUp', 'PageDown', 'Home', 'End'].includes(e.key)) {
+                handleUserScroll();
+            }
+        });
+
+        function handleUserScroll() {
+            if (!isAutoScrolling) return;
+
+            // 记录用户在操作前自动滚动是开启的
+            wasAutoScrollingBeforeUserAction = true;
+
+            // 暂停自动滚动
+            stopAutoScroll();
+            isAutoScrolling = false;
+            updateButtonState();
+
+            // 清除之前的定时器
+            if (userScrollTimeout) clearTimeout(userScrollTimeout);
+
+            // 用户停止操作 3 秒后自动恢复滚动
+            userScrollTimeout = setTimeout(() => {
+                if (wasAutoScrollingBeforeUserAction && !isAutoScrolling) {
+                    isAutoScrolling = true;
+                    startAutoScroll();
+                }
+            }, 3000);
+        }
+
+        // 页面加载完成后，自动开始滚动（默认开启）
+        window.addEventListener('load', () => {
+            // 初始状态：开启自动滚动
+            isAutoScrolling = true;
+            startAutoScroll();
+            updateButtonState();
+        });
+
+        // 页面卸载前清理定时器
+        window.addEventListener('beforeunload', () => {
+            stopAutoScroll();
         });
     </script>
 </body>
