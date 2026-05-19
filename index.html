@@ -3,22 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>林清悦 - 个人简历</title>
+    <title>🍁 张明远 · 个人简历</title>
     <style>
-        :root {
-            --green: #7ac291;
-            --light-green: #e8f5e9;
-            --yellow: #f9e79f;
-            --pink: #fadbd8;
-            --blue: #d4e6f1;
-            --white: #ffffff;
-            --text: #2c3e50;
-            --text-light: #5d6d7e;
-            --shadow: 0 4px 20px rgba(0,0,0,0.06);
-            --radius: 16px;
-            --gap: 24px;
-        }
-
+        /* ==================== 全局样式 ==================== */
         * {
             margin: 0;
             padding: 0;
@@ -27,891 +14,1019 @@
 
         body {
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', sans-serif;
-            background: linear-gradient(160deg, #f0f9f0 0%, #fefdf5 30%, #f5f9fc 60%, #fdf5f5 100%);
+            background: linear-gradient(135deg, #fdf2f0 0%, #fce4dc 25%, #fde8e4 50%, #fadbd8 75%, #fdf2f0 100%);
             background-attachment: fixed;
-            color: var(--text);
-            line-height: 1.7;
-            min-height: 100vh;
-            position: relative;
+            color: #4a3728;
+            line-height: 1.6;
+        }
+
+        .autumn-resume-page {
+            width: 100%;
             overflow-x: hidden;
         }
 
-        /* 装饰性光斑 */
-        body::before {
-            content: '';
+        /* ==================== 导航栏 ==================== */
+        .nav-bar {
             position: fixed;
-            top: -120px;
-            left: -120px;
-            width: 350px;
-            height: 350px;
-            background: radial-gradient(circle, rgba(122,194,145,0.12) 0%, transparent 70%);
-            border-radius: 50%;
-            pointer-events: none;
-            z-index: 0;
-            animation: floatBlob 20s ease-in-out infinite;
-        }
-
-        body::after {
-            content: '';
-            position: fixed;
-            bottom: -100px;
-            right: -100px;
-            width: 300px;
-            height: 300px;
-            background: radial-gradient(circle, rgba(250,219,216,0.15) 0%, transparent 70%);
-            border-radius: 50%;
-            pointer-events: none;
-            z-index: 0;
-            animation: floatBlob 25s ease-in-out infinite reverse;
-        }
-
-        @keyframes floatBlob {
-            0%, 100% { transform: translate(0, 0) scale(1); }
-            25% { transform: translate(30px, -20px) scale(1.05); }
-            50% { transform: translate(-15px, 25px) scale(0.95); }
-            75% { transform: translate(-25px, -15px) scale(1.03); }
-        }
-
-        .container {
-            max-width: 960px;
-            margin: 0 auto;
-            padding: 40px 24px 60px;
-            position: relative;
-            z-index: 1;
-        }
-
-        /* ========== 自动滚动按钮 ========== */
-        .auto-scroll-btn {
-            position: fixed;
-            bottom: 30px;
-            right: 30px;
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            background: rgba(255,255,255,0.9);
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            background: rgba(253, 242, 240, 0.85);
             backdrop-filter: blur(10px);
             -webkit-backdrop-filter: blur(10px);
-            border: 2px solid var(--green);
-            cursor: pointer;
-            font-size: 1.3rem;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            z-index: 999;
-            box-shadow: 0 4px 16px rgba(0,0,0,0.1);
+            border-bottom: 1px solid rgba(203, 119, 98, 0.2);
             transition: all 0.3s ease;
-            color: var(--green);
-            outline: none;
         }
 
-        .auto-scroll-btn:hover {
-            background: var(--green);
-            color: #fff;
-            transform: scale(1.1);
-            box-shadow: 0 6px 24px rgba(122,194,145,0.3);
+        .nav-bar.nav-scrolled {
+            background: rgba(253, 242, 240, 0.95);
+            box-shadow: 0 2px 12px rgba(203, 119, 98, 0.15);
         }
 
-        .auto-scroll-btn.paused {
-            border-color: #e0a800;
-            color: #e0a800;
-        }
-
-        .auto-scroll-btn.paused:hover {
-            background: #e0a800;
-            color: #fff;
-        }
-
-        @media (max-width: 640px) {
-            .auto-scroll-btn {
-                bottom: 20px;
-                right: 20px;
-                width: 44px;
-                height: 44px;
-                font-size: 1.1rem;
-            }
-        }
-
-        /* ========== 导航栏 ========== */
-        .nav {
-            position: sticky;
-            top: 16px;
-            z-index: 100;
+        .nav-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 16px 24px;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 14px 24px;
-            background: rgba(255,255,255,0.7);
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
-            border-radius: 50px;
-            box-shadow: 0 2px 16px rgba(0,0,0,0.05);
-            margin-bottom: 36px;
-            transition: all 0.3s;
-        }
-
-        .nav.scrolled {
-            background: rgba(255,255,255,0.9);
-            box-shadow: 0 4px 24px rgba(0,0,0,0.08);
         }
 
         .nav-logo {
-            font-weight: 700;
-            font-size: 1.1rem;
-            color: var(--green);
-            letter-spacing: 0.5px;
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: #c0392b;
         }
 
         .nav-links {
             display: flex;
-            gap: 20px;
-            list-style: none;
+            gap: 32px;
         }
 
         .nav-links a {
+            color: #6b4c3b;
             text-decoration: none;
-            color: var(--text-light);
-            font-size: 0.9rem;
-            transition: color 0.2s;
-            position: relative;
-        }
-
-        .nav-links a::after {
-            content: '';
-            position: absolute;
-            bottom: -4px;
-            left: 0;
-            width: 0;
-            height: 2px;
-            background: var(--green);
-            border-radius: 1px;
-            transition: width 0.3s;
+            font-size: 0.95rem;
+            transition: color 0.3s;
+            cursor: pointer;
         }
 
         .nav-links a:hover {
-            color: var(--green);
+            color: #c0392b;
         }
 
-        .nav-links a:hover::after {
-            width: 100%;
-        }
-
-        .menu-toggle {
+        /* 移动端菜单按钮 */
+        .mobile-menu-btn {
             display: none;
             background: none;
             border: none;
             font-size: 1.5rem;
             cursor: pointer;
-            color: var(--text);
-        }
-
-        @media (max-width: 640px) {
-            .nav-links {
-                display: none;
-                position: absolute;
-                top: 100%;
-                right: 0;
-                background: var(--white);
-                border-radius: var(--radius);
-                padding: 16px;
-                box-shadow: var(--shadow);
-                flex-direction: column;
-                gap: 12px;
-            }
-            .nav-links.open {
-                display: flex;
-            }
-            .menu-toggle {
-                display: block;
-            }
-        }
-
-        /* ========== Hero 区域 ========== */
-        .hero {
-            text-align: center;
-            padding: 60px 20px 50px;
-            position: relative;
-        }
-
-        .hero-avatar {
-            width: 100px;
-            height: 100px;
-            border-radius: 50%;
-            background: linear-gradient(135deg, #a8e6cf, #dcedc1);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin: 0 auto 20px;
-            font-size: 2.5rem;
-            color: var(--white);
-            box-shadow: 0 8px 30px rgba(122,194,145,0.25);
-            position: relative;
-        }
-
-        .hero-avatar::after {
-            content: '';
-            position: absolute;
-            inset: -6px;
-            border-radius: 50%;
-            border: 3px solid transparent;
-            border-top-color: var(--green);
-            border-right-color: var(--yellow);
-            animation: avatarSpin 4s linear infinite;
-        }
-
-        @keyframes avatarSpin {
-            to { transform: rotate(360deg); }
-        }
-
-        .hero-name {
-            font-size: 2.4rem;
-            font-weight: 700;
-            letter-spacing: 2px;
-            margin-bottom: 6px;
-            background: linear-gradient(135deg, #5a9e6f, #88b892);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-
-        .hero-title {
-            font-size: 1.1rem;
-            color: var(--text-light);
-            margin-bottom: 8px;
-            letter-spacing: 1px;
-        }
-
-        .hero-subtitle {
-            font-size: 0.95rem;
-            color: #999;
-            max-width: 500px;
-            margin: 0 auto;
-        }
-
-        /* ========== 通用模块卡片 ========== */
-        .section {
-            margin-top: var(--gap);
-        }
-
-        .section-title {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            font-size: 1.3rem;
-            font-weight: 700;
-            margin-bottom: 16px;
-            color: var(--text);
-            padding-left: 4px;
-        }
-
-        .section-title .icon {
-            width: 36px;
-            height: 36px;
-            border-radius: 10px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.2rem;
-        }
-
-        .icon-green { background: var(--light-green); }
-        .icon-yellow { background: #fef9e7; }
-        .icon-pink { background: var(--pink); }
-        .icon-blue { background: var(--blue); }
-
-        .cards-grid {
-            display: grid;
-            gap: var(--gap);
-        }
-
-        .cards-grid.cols-2 {
-            grid-template-columns: 1fr 1fr;
-        }
-
-        .cards-grid.cols-3 {
-            grid-template-columns: repeat(3, 1fr);
-        }
-
-        @media (max-width: 768px) {
-            .cards-grid.cols-2,
-            .cards-grid.cols-3 {
-                grid-template-columns: 1fr;
-            }
-        }
-
-        .card {
-            background: rgba(255,255,255,0.75);
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
-            border-radius: var(--radius);
-            padding: 24px;
-            box-shadow: var(--shadow);
-            border: 1px solid rgba(255,255,255,0.6);
-            transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 3px;
-            background: linear-gradient(90deg, var(--green), #a8e6cf, var(--yellow));
-            opacity: 0;
-            transition: opacity 0.3s;
-        }
-
-        .card:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 12px 32px rgba(0,0,0,0.1);
-            border-color: rgba(122,194,145,0.3);
-        }
-
-        .card:hover::before {
-            opacity: 1;
-        }
-
-        .card h3 {
-            font-size: 1.05rem;
-            margin-bottom: 12px;
-            color: var(--text);
-        }
-
-        .card p {
-            color: var(--text-light);
-            font-size: 0.95rem;
-        }
-
-        .card .meta {
-            font-size: 0.85rem;
-            color: #aaa;
-            margin-bottom: 8px;
-        }
-
-        /* 标签 */
-        .tags {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 8px;
-            margin-top: 12px;
-        }
-
-        .tag {
-            padding: 5px 14px;
-            border-radius: 20px;
-            font-size: 0.85rem;
-            font-weight: 500;
-            transition: all 0.25s;
-            cursor: default;
-        }
-
-        .tag-green {
-            background: var(--light-green);
-            color: #4a8c5c;
-        }
-
-        .tag-green:hover {
-            background: #c8e6c9;
-            transform: scale(1.05);
-            color: #2e5a3a;
-        }
-
-        .tag-yellow {
-            background: #fef9e7;
-            color: #b7950b;
-        }
-
-        .tag-yellow:hover {
-            background: #fdebd0;
-            transform: scale(1.05);
-            color: #8a6d0b;
-        }
-
-        .tag-pink {
-            background: var(--pink);
             color: #c0392b;
         }
 
-        .tag-pink:hover {
-            background: #f5b7b1;
-            transform: scale(1.05);
-            color: #922b21;
-        }
-
-        .tag-blue {
-            background: var(--blue);
-            color: #2e86c1;
-        }
-
-        .tag-blue:hover {
-            background: #aed6f1;
-            transform: scale(1.05);
-            color: #1a5276;
-        }
-
-        /* 经历时间线 */
-        .timeline-item {
-            padding: 16px 0;
-            border-bottom: 1px solid #f0f0f0;
-        }
-
-        .timeline-item:last-child {
-            border-bottom: none;
-        }
-
-        .timeline-item .period {
-            font-size: 0.85rem;
-            color: var(--green);
-            font-weight: 600;
-            margin-bottom: 4px;
-        }
-
-        .timeline-item h4 {
-            font-size: 1rem;
-            color: var(--text);
-            margin-bottom: 4px;
-        }
-
-        .timeline-item .desc {
-            font-size: 0.9rem;
-            color: var(--text-light);
-        }
-
-        /* 联系信息 */
-        .contact-list {
+        /* ==================== Hero区域 ==================== */
+        .hero-section {
+            min-height: 100vh;
             display: flex;
-            flex-wrap: wrap;
-            gap: 16px;
-            list-style: none;
-        }
-
-        .contact-list li {
-            display: flex;
+            flex-direction: column;
             align-items: center;
-            gap: 6px;
-            font-size: 0.95rem;
-            color: var(--text-light);
-        }
-
-        /* 页脚 */
-        .footer {
+            justify-content: center;
             text-align: center;
-            padding: 40px 20px 20px;
-            color: #bbb;
+            padding: 80px 24px;
+            position: relative;
+            background: linear-gradient(180deg, 
+                rgba(253, 242, 240, 0.3) 0%, 
+                rgba(252, 228, 220, 0.4) 30%, 
+                rgba(250, 219, 216, 0.5) 60%, 
+                rgba(253, 242, 240, 0.3) 100%);
+        }
+
+        .hero-content {
+            max-width: 700px;
+        }
+
+        .hero-name {
+            font-size: 3.5rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, #c0392b, #e67e22, #d35400);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 16px;
+            animation: gradientFlow 3s ease infinite;
+        }
+
+        @keyframes gradientFlow {
+            0%, 100% { filter: brightness(1); }
+            50% { filter: brightness(1.1); }
+        }
+
+        .hero-title {
+            font-size: 1.5rem;
+            color: #a0522d;
+            margin-bottom: 12px;
+            font-weight: 500;
+        }
+
+        .hero-subtitle {
+            font-size: 1.1rem;
+            color: #8b6914;
+            margin-bottom: 40px;
+            opacity: 0.85;
+        }
+
+        .hero-cta {
+            display: flex;
+            gap: 16px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn-primary, .btn-secondary {
+            padding: 14px 36px;
+            border-radius: 30px;
+            font-size: 1rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: none;
+            outline: none;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #c0392b, #e67e22);
+            color: white;
+            box-shadow: 0 4px 15px rgba(192, 57, 43, 0.3);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(192, 57, 43, 0.4);
+        }
+
+        .btn-secondary {
+            background: rgba(203, 119, 98, 0.15);
+            color: #a0522d;
+            border: 1px solid rgba(203, 119, 98, 0.3);
+        }
+
+        .btn-secondary:hover {
+            background: rgba(203, 119, 98, 0.25);
+            transform: translateY(-2px);
+        }
+
+        /* 滚动指示器 */
+        .scroll-indicator {
+            position: absolute;
+            bottom: 40px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            cursor: pointer;
+            animation: bounce 2s infinite;
+        }
+
+        .scroll-indicator span {
             font-size: 0.85rem;
+            color: #a0522d;
+            margin-bottom: 8px;
         }
 
-        .footer .heart {
-            color: var(--pink);
-            animation: heartbeat 1.5s ease-in-out infinite;
+        .scroll-arrow {
+            font-size: 1.5rem;
+            color: #c0392b;
         }
 
-        @keyframes heartbeat {
-            0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.2); }
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+            40% { transform: translateY(-10px); }
+            60% { transform: translateY(-5px); }
         }
 
-        /* ========== 滚动渐显动画 ========== */
-        .fade-up {
+        /* ==================== 通用区块样式 ==================== */
+        .section {
+            padding: 80px 24px;
             opacity: 0;
             transform: translateY(30px);
-            transition: opacity 0.7s ease, transform 0.7s ease;
+            transition: opacity 0.8s ease, transform 0.8s ease;
         }
 
-        .fade-up.visible {
+        .section.visible {
             opacity: 1;
             transform: translateY(0);
         }
 
-        .delay-1 { transition-delay: 0.1s; }
-        .delay-2 { transition-delay: 0.2s; }
-        .delay-3 { transition-delay: 0.3s; }
-        .delay-4 { transition-delay: 0.4s; }
-        .delay-5 { transition-delay: 0.5s; }
+        .section-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 60px;
+            align-items: start;
+        }
+
+        .section-left {
+            position: sticky;
+            top: 100px;
+        }
+
+        .section-title {
+            font-size: 2.2rem;
+            font-weight: 700;
+            color: #c0392b;
+            margin-bottom: 12px;
+        }
+
+        .section-desc {
+            color: #8b6914;
+            font-size: 1.05rem;
+            opacity: 0.8;
+        }
+
+        /* ==================== 关于我 ==================== */
+        .about-section {
+            background: rgba(253, 242, 240, 0.3);
+        }
+
+        .about-card {
+            background: rgba(255, 255, 255, 0.5);
+            border-radius: 16px;
+            padding: 32px;
+            border: 1px solid rgba(203, 119, 98, 0.15);
+            backdrop-filter: blur(5px);
+            -webkit-backdrop-filter: blur(5px);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .about-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 30px rgba(203, 119, 98, 0.12);
+        }
+
+        .about-card p {
+            margin-bottom: 16px;
+            color: #5d4037;
+            line-height: 1.8;
+        }
+
+        .about-info-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+            margin-top: 24px;
+            padding-top: 24px;
+            border-top: 1px solid rgba(203, 119, 98, 0.15);
+        }
+
+        .info-item {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+
+        .info-label {
+            font-size: 0.85rem;
+            color: #a0522d;
+            opacity: 0.7;
+        }
+
+        .info-value {
+            color: #4a3728;
+            font-weight: 500;
+        }
+
+        /* ==================== 工作经历 ==================== */
+        .timeline {
+            position: relative;
+            padding-left: 30px;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: linear-gradient(180deg, #c0392b, #e67e22, #d35400);
+        }
+
+        .timeline-item {
+            position: relative;
+            margin-bottom: 40px;
+        }
+
+        .timeline-item:last-child {
+            margin-bottom: 0;
+        }
+
+        .timeline-dot {
+            position: absolute;
+            left: -34px;
+            top: 8px;
+            width: 10px;
+            height: 10px;
+            background: #c0392b;
+            border-radius: 50%;
+            border: 2px solid #fdf2f0;
+        }
+
+        .timeline-content {
+            background: rgba(255, 255, 255, 0.5);
+            border-radius: 12px;
+            padding: 24px;
+            border: 1px solid rgba(203, 119, 98, 0.15);
+            backdrop-filter: blur(5px);
+            -webkit-backdrop-filter: blur(5px);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .timeline-content:hover {
+            transform: translateX(8px);
+            box-shadow: 0 4px 20px rgba(203, 119, 98, 0.15);
+        }
+
+        .timeline-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 8px;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .timeline-header h3 {
+            color: #c0392b;
+            font-size: 1.2rem;
+        }
+
+        .timeline-date {
+            color: #a0522d;
+            font-size: 0.9rem;
+            opacity: 0.8;
+        }
+
+        .timeline-role {
+            color: #e67e22;
+            font-weight: 500;
+            margin-bottom: 12px;
+        }
+
+        .timeline-details {
+            list-style: none;
+            padding: 0;
+        }
+
+        .timeline-details li {
+            color: #5d4037;
+            padding: 4px 0;
+            padding-left: 20px;
+            position: relative;
+        }
+
+        .timeline-details li::before {
+            content: '🍂';
+            position: absolute;
+            left: 0;
+            font-size: 0.75rem;
+        }
+
+        /* ==================== 项目经验 ==================== */
+        .projects-section {
+            background: rgba(253, 242, 240, 0.3);
+        }
+
+        .projects-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 24px;
+        }
+
+        .project-card {
+            background: rgba(255, 255, 255, 0.5);
+            border-radius: 12px;
+            padding: 24px;
+            border: 1px solid rgba(203, 119, 98, 0.15);
+            backdrop-filter: blur(5px);
+            -webkit-backdrop-filter: blur(5px);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .project-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 30px rgba(203, 119, 98, 0.15);
+        }
+
+        .project-card h3 {
+            color: #c0392b;
+            font-size: 1.15rem;
+            margin-bottom: 8px;
+        }
+
+        .project-tech {
+            color: #e67e22;
+            font-size: 0.9rem;
+            margin-bottom: 12px;
+            font-weight: 500;
+        }
+
+        .project-desc {
+            color: #5d4037;
+            line-height: 1.7;
+            margin-bottom: 16px;
+        }
+
+        .project-highlights {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .highlight-tag {
+            background: linear-gradient(135deg, rgba(192, 57, 43, 0.1), rgba(230, 126, 34, 0.1));
+            color: #c0392b;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            border: 1px solid rgba(203, 119, 98, 0.2);
+        }
+
+        /* ==================== 技能特长 ==================== */
+        .skills-categories {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 24px;
+        }
+
+        .skill-category {
+            background: rgba(255, 255, 255, 0.5);
+            border-radius: 12px;
+            padding: 24px;
+            border: 1px solid rgba(203, 119, 98, 0.15);
+            backdrop-filter: blur(5px);
+            -webkit-backdrop-filter: blur(5px);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .skill-category:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(203, 119, 98, 0.1);
+        }
+
+        .skill-category h3 {
+            color: #c0392b;
+            font-size: 1.1rem;
+            margin-bottom: 16px;
+        }
+
+        .skill-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .skill-tag {
+            background: linear-gradient(135deg, #fde8e4, #fadbd8);
+            color: #a0522d;
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(203, 119, 98, 0.2);
+            cursor: default;
+        }
+
+        .skill-tag:hover {
+            background: linear-gradient(135deg, #c0392b, #e67e22);
+            color: white;
+            transform: scale(1.05);
+        }
+
+        /* ==================== 教育背景 ==================== */
+        .education-card {
+            background: rgba(255, 255, 255, 0.5);
+            border-radius: 12px;
+            padding: 32px;
+            border: 1px solid rgba(203, 119, 98, 0.15);
+            backdrop-filter: blur(5px);
+            -webkit-backdrop-filter: blur(5px);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .education-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 30px rgba(203, 119, 98, 0.12);
+        }
+
+        .edu-item h3 {
+            color: #c0392b;
+            font-size: 1.2rem;
+            margin-bottom: 8px;
+        }
+
+        .edu-degree {
+            color: #e67e22;
+            font-weight: 500;
+            margin-bottom: 4px;
+        }
+
+        .edu-date {
+            color: #a0522d;
+            font-size: 0.9rem;
+            opacity: 0.8;
+            margin-bottom: 16px;
+        }
+
+        .edu-desc {
+            color: #5d4037;
+            line-height: 1.7;
+        }
+
+        /* ==================== 联系方式 ==================== */
+        .contact-section {
+            background: rgba(253, 242, 240, 0.3);
+        }
+
+        .contact-card {
+            background: rgba(255, 255, 255, 0.5);
+            border-radius: 12px;
+            padding: 32px;
+            border: 1px solid rgba(203, 119, 98, 0.15);
+            backdrop-filter: blur(5px);
+            -webkit-backdrop-filter: blur(5px);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .contact-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 30px rgba(203, 119, 98, 0.12);
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 12px;
+            border-radius: 8px;
+            transition: background 0.3s ease;
+        }
+
+        .contact-item:hover {
+            background: rgba(203, 119, 98, 0.1);
+        }
+
+        .contact-icon {
+            font-size: 1.5rem;
+        }
+
+        .contact-info {
+            color: #5d4037;
+            font-size: 0.95rem;
+        }
+
+        /* ==================== 页脚 ==================== */
+        .footer {
+            text-align: center;
+            padding: 40px 24px;
+            background: linear-gradient(180deg, rgba(253, 242, 240, 0.5), rgba(252, 228, 220, 0.3));
+            border-top: 1px solid rgba(203, 119, 98, 0.2);
+        }
+
+        .footer p {
+            color: #a0522d;
+            margin-bottom: 8px;
+        }
+
+        .footer-quote {
+            font-style: italic;
+            opacity: 0.7;
+            font-size: 0.9rem;
+        }
+
+        /* ==================== 响应式设计 ==================== */
+        @media (max-width: 768px) {
+            .section-container {
+                grid-template-columns: 1fr;
+                gap: 32px;
+            }
+            
+            .section-left {
+                position: static;
+            }
+            
+            .hero-name {
+                font-size: 2.5rem;
+            }
+            
+            .skills-categories {
+                grid-template-columns: 1fr;
+            }
+            
+            .contact-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .about-info-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            .nav-links.mobile-open {
+                display: flex;
+                flex-direction: column;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                background: rgba(253, 242, 240, 0.98);
+                backdrop-filter: blur(10px);
+                -webkit-backdrop-filter: blur(10px);
+                padding: 20px 24px;
+                gap: 16px;
+                border-bottom: 1px solid rgba(203, 119, 98, 0.2);
+            }
+
+            .mobile-menu-btn {
+                display: block;
+            }
+
+            .section {
+                padding: 60px 20px;
+            }
+
+            .section-title {
+                font-size: 1.8rem;
+            }
+
+            .hero-cta {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .btn-primary, .btn-secondary {
+                width: 100%;
+                max-width: 250px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero-name {
+                font-size: 2rem;
+            }
+
+            .hero-title {
+                font-size: 1.2rem;
+            }
+
+            .hero-subtitle {
+                font-size: 0.95rem;
+            }
+
+            .timeline-header {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+        }
     </style>
 </head>
 <body>
-
-    <!-- ========== 自动滚动控制按钮 ========== -->
-    <button class="auto-scroll-btn" id="autoScrollBtn" title="暂停自动滚动">⏸</button>
-
-    <div class="container">
+    <div class="autumn-resume-page">
         <!-- 导航栏 -->
-        <nav class="nav" id="navbar">
-            <span class="nav-logo">🌱 林清悦</span>
-            <ul class="nav-links" id="navLinks">
-                <li><a href="#about">关于我</a></li>
-                <li><a href="#skills">专业技能</a></li>
-                <li><a href="#experience">工作经历</a></li>
-                <li><a href="#projects">项目经验</a></li>
-                <li><a href="#contact">联系我</a></li>
-            </ul>
-            <button class="menu-toggle" onclick="toggleMenu()">☰</button>
+        <nav class="nav-bar" id="navbar">
+            <div class="nav-content">
+                <span class="nav-logo">🍁 个人简历</span>
+                <div class="nav-links" id="navLinks">
+                    <a href="#hero" onclick="scrollToSection('hero')">首页</a>
+                    <a href="#about" onclick="scrollToSection('about')">关于我</a>
+                    <a href="#experience" onclick="scrollToSection('experience')">经历</a>
+                    <a href="#projects" onclick="scrollToSection('projects')">项目</a>
+                    <a href="#skills" onclick="scrollToSection('skills')">技能</a>
+                    <a href="#education" onclick="scrollToSection('education')">教育</a>
+                    <a href="#contact" onclick="scrollToSection('contact')">联系</a>
+                </div>
+                <button class="mobile-menu-btn" onclick="toggleMenu()" aria-label="菜单">☰</button>
+            </div>
         </nav>
 
-        <!-- Hero 区域 -->
-        <header class="hero fade-up">
-            <div class="hero-avatar">🌸</div>
-            <h1 class="hero-name">林清悦</h1>
-            <p class="hero-title">高级前端开发工程师 · UI/UX 设计师</p>
-            <p class="hero-subtitle">热衷于创造简洁优雅的用户体验，用代码描绘春天的色彩</p>
-        </header>
-
-        <!-- 关于我 -->
-        <section class="section fade-up delay-1" id="about">
-            <div class="section-title">
-                <span class="icon icon-green">💐</span>
-                关于我
+        <!-- Hero区域 -->
+        <section id="hero" class="hero-section">
+            <div class="hero-content">
+                <h1 class="hero-name">张明远</h1>
+                <p class="hero-title">高级前端开发工程师</p>
+                <p class="hero-subtitle">用代码编织秋日般温暖而富有层次的用户体验</p>
+                <div class="hero-cta">
+                    <button class="btn-primary" onclick="scrollToSection('about')">了解更多</button>
+                    <button class="btn-secondary" onclick="scrollToSection('contact')">联系我</button>
+                </div>
             </div>
-            <div class="cards-grid cols-2">
-                <div class="card">
-                    <h3>📖 个人简介</h3>
-                    <p>5年互联网行业经验，主导过多个从0到1的产品设计。<br>擅长将复杂需求转化为直观界面，注重细节与性能平衡。</p>
-                </div>
-                <div class="card">
-                    <h3>🎯 职业目标</h3>
-                    <p>成为全栈型产品设计师，<br>用技术和美学驱动产品价值，打造有温度的数字化体验。</p>
-                </div>
+            <div class="scroll-indicator" onclick="scrollToSection('about')">
+                <span>向下滚动</span>
+                <div class="scroll-arrow">↓</div>
             </div>
         </section>
 
-        <!-- 专业技能 - 按类型分模块 -->
-        <section class="section fade-up delay-2" id="skills">
-            <div class="section-title">
-                <span class="icon icon-yellow">🌟</span>
-                专业技能
-            </div>
-
-            <!-- 前端技术 -->
-            <div class="card" style="margin-bottom: var(--gap);">
-                <h3>🖥️ 前端开发</h3>
-                <div class="tags">
-                    <span class="tag tag-green">HTML5</span>
-                    <span class="tag tag-green">CSS3 / SCSS</span>
-                    <span class="tag tag-green">JavaScript ES6+</span>
-                    <span class="tag tag-green">TypeScript</span>
-                    <span class="tag tag-green">React</span>
-                    <span class="tag tag-green">Vue.js</span>
-                    <span class="tag tag-green">Next.js</span>
+        <!-- 关于我 -->
+        <section id="about" class="section about-section">
+            <div class="section-container">
+                <div class="section-left">
+                    <h2 class="section-title">🍂 关于我</h2>
+                    <p class="section-desc">5年前端开发经验，热爱创造优雅的用户界面</p>
                 </div>
-            </div>
-
-            <!-- UI/UX 设计 -->
-            <div class="card" style="margin-bottom: var(--gap);">
-                <h3>🎨 UI/UX 设计</h3>
-                <div class="tags">
-                    <span class="tag tag-pink">Figma</span>
-                    <span class="tag tag-pink">Sketch</span>
-                    <span class="tag tag-pink">Adobe XD</span>
-                    <span class="tag tag-pink">设计系统</span>
-                    <span class="tag tag-pink">原型设计</span>
-                    <span class="tag tag-pink">用户研究</span>
-                    <span class="tag tag-pink">交互设计</span>
-                </div>
-            </div>
-
-            <!-- 后端 & 工具 -->
-            <div class="card" style="margin-bottom: var(--gap);">
-                <h3>⚙️ 后端 & 工具链</h3>
-                <div class="tags">
-                    <span class="tag tag-blue">Node.js</span>
-                    <span class="tag tag-blue">Python</span>
-                    <span class="tag tag-blue">Docker</span>
-                    <span class="tag tag-blue">Git</span>
-                    <span class="tag tag-blue">Webpack</span>
-                    <span class="tag tag-blue">Vite</span>
-                    <span class="tag tag-blue">CI/CD</span>
-                </div>
-            </div>
-
-            <!-- 软技能 -->
-            <div class="card">
-                <h3>💬 软技能</h3>
-                <div class="tags">
-                    <span class="tag tag-yellow">跨部门协作</span>
-                    <span class="tag tag-yellow">技术方案撰写</span>
-                    <span class="tag tag-yellow">项目管理</span>
-                    <span class="tag tag-yellow">敏捷开发</span>
-                    <span class="tag tag-yellow">技术分享</span>
-                    <span class="tag tag-yellow">英语流利</span>
+                <div class="section-right">
+                    <div class="about-card">
+                        <p>我是一名充满热情的前端开发工程师，专注于构建高性能、可维护的Web应用。拥有计算机科学学士学位，曾就职于多家知名互联网公司。</p>
+                        <p>我相信优秀的代码不仅要实现功能，更要像秋日的枫叶一样，在简洁中展现层次与美感。业余时间喜欢研究新技术，参与开源项目。</p>
+                        <div class="about-info-grid">
+                            <div class="info-item">
+                                <span class="info-label">📍 所在地</span>
+                                <span class="info-value">北京</span>
+                            </div>
+                            <div class="info-item">
+                                <span class="info-label">🎂 出生年份</span>
+                                <span class="info-value">1995年</span>
+                            </div>
+                            <div class="info-item">
+                                <span class="info-label">📧 邮箱</span>
+                                <span class="info-value">zhangmy@example.com</span>
+                            </div>
+                            <div class="info-item">
+                                <span class="info-label">🎓 学历</span>
+                                <span class="info-value">本科 · 计算机科学</span>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </section>
 
         <!-- 工作经历 -->
-        <section class="section fade-up delay-3" id="experience">
-            <div class="section-title">
-                <span class="icon icon-pink">💼</span>
-                工作经历
-            </div>
-            <div class="card">
-                <div class="timeline-item">
-                    <p class="period">2023.03 - 至今</p>
-                    <h4>字节跳动 · 高级前端工程师</h4>
-                    <p class="desc">负责抖音电商商家端核心模块开发，优化页面性能使加载速度提升40%，设计并落地组件库被团队广泛采用。</p>
+        <section id="experience" class="section experience-section">
+            <div class="section-container">
+                <div class="section-left">
+                    <h2 class="section-title">💼 工作经历</h2>
+                    <p class="section-desc">每一步都是成长的印记</p>
                 </div>
-                <div class="timeline-item">
-                    <p class="period">2020.07 - 2023.02</p>
-                    <h4>美团 · 前端开发工程师</h4>
-                    <p class="desc">参与美团App首页改版，主导设计系统升级，推动跨平台组件复用率提升至80%。</p>
-                </div>
-                <div class="timeline-item">
-                    <p class="period">2018.09 - 2020.06</p>
-                    <h4>创业公司 · 全栈开发</h4>
-                    <p class="desc">独立完成公司官网及后台管理系统，使用 React + Node.js 技术栈，服务超过10万用户。</p>
+                <div class="section-right">
+                    <div class="timeline">
+                        <div class="timeline-item">
+                            <div class="timeline-dot"></div>
+                            <div class="timeline-content">
+                                <div class="timeline-header">
+                                    <h3>字节跳动</h3>
+                                    <span class="timeline-date">2022.06 - 至今</span>
+                                </div>
+                                <p class="timeline-role">高级前端开发工程师</p>
+                                <ul class="timeline-details">
+                                    <li>主导公司核心产品的前端架构设计与重构，提升页面加载性能40%</li>
+                                    <li>搭建组件库，统一团队开发规范，提高开发效率30%</li>
+                                    <li>引入微前端架构，解决多团队协作中的技术栈冲突问题</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-dot"></div>
+                            <div class="timeline-content">
+                                <div class="timeline-header">
+                                    <h3>阿里巴巴</h3>
+                                    <span class="timeline-date">2019.03 - 2022.05</span>
+                                </div>
+                                <p class="timeline-role">前端开发工程师</p>
+                                <ul class="timeline-details">
+                                    <li>参与电商平台前端开发，负责商品详情页、购物车等核心模块</li>
+                                    <li>实现复杂交互组件，提升用户转化率15%</li>
+                                    <li>优化首屏渲染时间，减少白屏时间至1秒以内</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-dot"></div>
+                            <div class="timeline-content">
+                                <div class="timeline-header">
+                                    <h3>美团</h3>
+                                    <span class="timeline-date">2017.07 - 2019.02</span>
+                                </div>
+                                <p class="timeline-role">初级前端开发工程师</p>
+                                <ul class="timeline-details">
+                                    <li>参与商家端管理系统的前端开发工作</li>
+                                    <li>使用Vue.js构建响应式界面，支持多端适配</li>
+                                    <li>编写单元测试，保证代码质量</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </section>
 
         <!-- 项目经验 -->
-        <section class="section fade-up delay-4" id="projects">
-            <div class="section-title">
-                <span class="icon icon-blue">🚀</span>
-                项目经验
+        <section id="projects" class="section projects-section">
+            <div class="section-container">
+                <div class="section-left">
+                    <h2 class="section-title">🚀 项目经验</h2>
+                    <p class="section-desc">从构思到落地的精彩案例</p>
+                </div>
+                <div class="section-right">
+                    <div class="projects-grid">
+                        <div class="project-card">
+                            <h3>电商平台重构</h3>
+                            <p class="project-tech">React + TypeScript + Node.js</p>
+                            <p class="project-desc">负责整个电商平台的前端架构升级，采用React Hooks + TypeScript技术栈，实现组件化开发和类型安全。</p>
+                            <div class="project-highlights">
+                                <span class="highlight-tag">性能优化</span>
+                                <span class="highlight-tag">组件库</span>
+                                <span class="highlight-tag">微前端</span>
+                            </div>
+                        </div>
+                        <div class="project-card">
+                            <h3>实时协作编辑器</h3>
+                            <p class="project-tech">Vue3 + WebSocket + Canvas</p>
+                            <p class="project-desc">开发支持多人实时协作的在线文档编辑器，采用CRDT算法保证数据一致性，支持富文本编辑。</p>
+                            <div class="project-highlights">
+                                <span class="highlight-tag">实时协作</span>
+                                <span class="highlight-tag">CRDT</span>
+                                <span class="highlight-tag">WebSocket</span>
+                            </div>
+                        </div>
+                        <div class="project-card">
+                            <h3>数据可视化大屏</h3>
+                            <p class="project-tech">ECharts + D3.js + Vue3</p>
+                            <p class="project-desc">为企业客户定制开发数据可视化大屏，支持实时数据展示和交互式图表操作。</p>
+                            <div class="project-highlights">
+                                <span class="highlight-tag">数据可视化</span>
+                                <span class="highlight-tag">大屏适配</span>
+                                <span class="highlight-tag">实时展示</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div class="cards-grid cols-2">
-                <div class="card">
-                    <h3>📱 跨平台设计系统</h3>
-                    <p class="meta">React / TypeScript / Storybook</p>
-                    <p>从零搭建企业级组件库，包含60+组件，支持主题定制与无障碍访问，文档覆盖率100%。</p>
+        </section>
+
+        <!-- 技能特长 -->
+        <section id="skills" class="section skills-section">
+            <div class="section-container">
+                <div class="section-left">
+                    <h2 class="section-title">🛠 技能特长</h2>
+                    <p class="section-desc">持续学习，不断精进</p>
                 </div>
-                <div class="card">
-                    <h3>🛒 电商小程序</h3>
-                    <p class="meta">Vue.js / 微信原生</p>
-                    <p>负责商品详情页与购物车模块，实现复杂SKU选择器，上线后转化率提升25%。</p>
-                </div>
-                <div class="card">
-                    <h3>📊 数据可视化平台</h3>
-                    <p class="meta">ECharts / React / WebSocket</p>
-                    <p>实时展示业务数据大盘，支持自定义图表配置，服务内部20+团队日常数据监控。</p>
-                </div>
-                <div class="card">
-                    <h3>🎓 在线教育平台</h3>
-                    <p class="meta">Next.js / TailwindCSS</p>
-                    <p>参与核心课程播放器开发，支持直播与录播，峰值并发在线人数5万+。</p>
+                <div class="section-right">
+                    <div class="skills-categories">
+                        <div class="skill-category">
+                            <h3>前端框架</h3>
+                            <div class="skill-tags">
+                                <span class="skill-tag">React</span>
+                                <span class="skill-tag">Vue.js</span>
+                                <span class="skill-tag">TypeScript</span>
+                                <span class="skill-tag">Next.js</span>
+                                <span class="skill-tag">Nuxt.js</span>
+                            </div>
+                        </div>
+                        <div class="skill-category">
+                            <h3>UI/样式</h3>
+                            <div class="skill-tags">
+                                <span class="skill-tag">Tailwind CSS</span>
+                                <span class="skill-tag">SCSS</span>
+                                <span class="skill-tag">CSS3动画</span>
+                                <span class="skill-tag">响应式设计</span>
+                                <span class="skill-tag">Figma</span>
+                            </div>
+                        </div>
+                        <div class="skill-category">
+                            <h3>工具/工程化</h3>
+                            <div class="skill-tags">
+                                <span class="skill-tag">Webpack</span>
+                                <span class="skill-tag">Vite</span>
+                                <span class="skill-tag">Git</span>
+                                <span class="skill-tag">CI/CD</span>
+                                <span class="skill-tag">Docker</span>
+                            </div>
+                        </div>
+                        <div class="skill-category">
+                            <h3>后端/数据库</h3>
+                            <div class="skill-tags">
+                                <span class="skill-tag">Node.js</span>
+                                <span class="skill-tag">Python</span>
+                                <span class="skill-tag">MySQL</span>
+                                <span class="skill-tag">MongoDB</span>
+                                <span class="skill-tag">Redis</span>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </section>
 
         <!-- 教育背景 -->
-        <section class="section fade-up delay-5">
-            <div class="section-title">
-                <span class="icon icon-green">🎓</span>
-                教育背景
-            </div>
-            <div class="card">
-                <div class="timeline-item">
-                    <p class="period">2014.09 - 2018.06</p>
-                    <h4>浙江大学 · 计算机科学与技术 · 本科</h4>
-                    <p class="desc">GPA 3.8/4.0，曾获国家奖学金、ACM竞赛区域赛银奖</p>
+        <section id="education" class="section education-section">
+            <div class="section-container">
+                <div class="section-left">
+                    <h2 class="section-title">📚 教育背景</h2>
+                    <p class="section-desc">扎实的理论基础</p>
+                </div>
+                <div class="section-right">
+                    <div class="education-card">
+                        <div class="edu-item">
+                            <h3>北京大学</h3>
+                            <p class="edu-degree">计算机科学与技术 · 学士</p>
+                            <p class="edu-date">2013 - 2017</p>
+                            <p class="edu-desc">主修课程：数据结构、算法设计、操作系统、计算机网络、数据库原理等。在校期间获得校级奖学金，参与多个科研项目。</p>
+                        </div>
+                    </div>
                 </div>
             </div>
         </section>
 
-        <!-- 联系我 -->
-        <section class="section fade-up" id="contact">
-            <div class="section-title">
-                <span class="icon icon-pink">📬</span>
-                联系我
-            </div>
-            <div class="card">
-                <ul class="contact-list">
-                    <li>📧 linqingyue@example.com</li>
-                    <li>📱 138-xxxx-xxxx</li>
-                    <li>🔗 github.com/qingyue</li>
-                    <li>📍 中国 · 杭州</li>
-                </ul>
+        <!-- 联系方式 -->
+        <section id="contact" class="section contact-section">
+            <div class="section-container">
+                <div class="section-left">
+                    <h2 class="section-title">📮 联系我</h2>
+                    <p class="section-desc">期待与您的合作</p>
+                </div>
+                <div class="section-right">
+                    <div class="contact-card">
+                        <div class="contact-grid">
+                            <div class="contact-item">
+                                <span class="contact-icon">📧</span>
+                                <span class="contact-info">zhangmy@example.com</span>
+                            </div>
+                            <div class="contact-item">
+                                <span class="contact-icon">📱</span>
+                                <span class="contact-info">+86 138-0000-0000</span>
+                            </div>
+                            <div class="contact-item">
+                                <span class="contact-icon">🐙</span>
+                                <span class="contact-info">github.com/zhangmingyuan</span>
+                            </div>
+                            <div class="contact-item">
+                                <span class="contact-icon">💼</span>
+                                <span class="contact-info">linkedin.com/in/zhangmy</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </section>
 
         <!-- 页脚 -->
         <footer class="footer">
-            <p>Made with <span class="heart">💚</span> by 林清悦 · 2024</p>
-            <p>春意盎然 · 简约不简单</p>
+            <p>🍁 张明远 · 个人简历 · 2024</p>
+            <p class="footer-quote">"生活如同秋天的枫叶，在渐变中绽放最美的色彩"</p>
         </footer>
     </div>
 
     <script>
-        // ========== 滚动渐显动画 ==========
-        const observerOptions = {
-            threshold: 0.15,
-            rootMargin: '0px 0px -50px 0px'
-        };
-
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('visible');
-                }
-            });
-        }, observerOptions);
-
-        document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
-
-        // ========== 导航栏滚动效果 ==========
+        // ==================== 滚动处理 ====================
+        let ticking = false;
         const navbar = document.getElementById('navbar');
-        window.addEventListener('scroll', () => {
-            if (window.scrollY > 50) {
-                navbar.classList.add('scrolled');
-            } else {
-                navbar.classList.remove('scrolled');
+
+        // 导航栏滚动效果（使用节流优化性能）
+        window.addEventListener('scroll', function() {
+            if (!ticking) {
+                window.requestAnimationFrame(function() {
+                    // 导航栏样式切换
+                    if (window.scrollY > 100) {
+                        navbar.classList.add('nav-scrolled');
+                    } else {
+                        navbar.classList.remove('nav-scrolled');
+                    }
+
+                    // 检测区块可见性
+                    const sections = document.querySelectorAll('.section');
+                    sections.forEach(function(section) {
+                        const rect = section.getBoundingClientRect();
+                        const windowHeight = window.innerHeight || document.documentElement.clientHeight;
+                        
+                        if (rect.top <= windowHeight * 0.85 && rect.bottom >= 0) {
+                            section.classList.add('visible');
+                        }
+                    });
+
+                    ticking = false;
+                });
+                ticking = true;
             }
         });
 
-        // ========== 移动端菜单 ==========
-        function toggleMenu() {
-            document.getElementById('navLinks').classList.toggle('open');
-        }
+        // ==================== 平滑滚动功能 ====================
+        function scrollToSection(sectionId) {
+            const element = document.getElementById(sectionId);
+            if (element) {
+                // 关闭移动端菜单
+                const navLinks = document.getElementById('navLinks');
+                navLinks.classList.remove('mobile-open');
 
-        document.querySelectorAll('.nav-links a').forEach(link => {
-            link.addEventListener('click', () => {
-                document.getElementById('navLinks').classList.remove('open');
-            });
-        });
-
-        // ========== 自动滚动核心逻辑 ==========
-        const btn = document.getElementById('autoScrollBtn');
-        const SCROLL_SPEED = 0.4;      // 每次滚动像素数（越小越慢）
-        const SCROLL_INTERVAL = 25;     // 间隔毫秒（越大越慢）
-        const RESUME_DELAY = 3000;      // 用户停止操作后多久恢复自动滚动（毫秒）
-
-        let scrollTimer = null;
-        let isScrolling = true;         // 当前是否在自动滚动
-        let userActionTimer = null;     // 用户操作后的恢复定时器
-
-        /**
-         * 开始自动滚动
-         */
-        function startAutoScroll() {
-            if (scrollTimer) return; // 已经在运行
-
-            scrollTimer = setInterval(() => {
-                if (!isScrolling) return;
-
-                const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-                const scrollHeight = document.documentElement.scrollHeight;
-                const clientHeight = document.documentElement.clientHeight;
-                const maxScroll = scrollHeight - clientHeight;
-
-                // 到达底部时，平滑回到顶部
-                if (scrollTop >= maxScroll - 3) {
-                    window.scrollTo({ top: 0, behavior: 'smooth' });
-                } else {
-                    window.scrollBy({ top: SCROLL_SPEED, behavior: 'auto' });
-                }
-            }, SCROLL_INTERVAL);
-
-            updateUI();
-        }
-
-        /**
-         * 停止自动滚动
-         */
-        function stopAutoScroll() {
-            if (scrollTimer) {
-                clearInterval(scrollTimer);
-                scrollTimer = null;
-            }
-            updateUI();
-        }
-
-        /**
-         * 切换自动滚动
-         */
-        function toggleAutoScroll() {
-            // 如果有用户恢复定时器在等待，先清除
-            if (userActionTimer) {
-                clearTimeout(userActionTimer);
-                userActionTimer = null;
-            }
-
-            if (isScrolling) {
-                // 当前在滚动 -> 暂停
-                isScrolling = false;
-                stopAutoScroll();
-            } else {
-                // 当前暂停 -> 开始滚动
-                isScrolling = true;
-                startAutoScroll();
-            }
-        }
-
-        /**
-         * 更新按钮外观
-         */
-        function updateUI() {
-            if (isScrolling) {
-                btn.innerHTML = '⏸';
-                btn.classList.remove('paused');
-                btn.title = '暂停自动滚动';
-            } else {
-                btn.innerHTML = '▶';
-                btn.classList.add('paused');
-                btn.title = '开始自动滚动';
-            }
-        }
-
-        /**
-         * 用户手动滚动时的处理
-         * 暂停自动滚动，等待用户停止操作后恢复
-         */
-        function onUserScroll() {
-            if (!isScrolling) return; // 本来就停了，不管
-
-            // 暂时停止
-            isScrolling = false;
-            stopAutoScroll();
-            updateUI();
-
-            // 清除之前的恢复定时器
-            if (userActionTimer) clearTimeout(userActionTimer);
-
-            // 用户停止操作 RESUME_DELAY 毫秒后恢复
-            userActionTimer = setTimeout(() => {
-                isScrolling = true;
-                startAutoScroll();
-            }, RESUME_DELAY);
-        }
-
-        // ========== 事件绑定 ==========
-
-        // 按钮点击
-        btn.addEventListener('click', toggleAutoScroll);
-
-        // 鼠标滚轮
-        window.addEventListener('wheel', onUserScroll, { passive: true });
-
-        // 触摸滑动（移动端）
-        window.addEventListener('touchmove', onUserScroll, { passive: true });
-
-        // 键盘方向键等
-        window.addEventListener('keydown', (e) => {
-            const scrollKeys = ['ArrowUp', 'ArrowDown', 'PageUp', 'PageDown', 'Home', 'End', 'Space'];
-            if (scrollKeys.includes(e.key)) {
-                onUserScroll();
-            }
-        });
-
-        // ========== 启动：页面加载完成后立即开始自动滚动 ==========
-        // 使用 DOMContentLoaded 确保在 DOM 就绪后立即启动
-        if (document.readyState === 'loading') {
-            document.addEventListener('DOMContentLoaded', () => {
-                isScrolling = true;
-                startAutoScroll();
-            });
-        } else {
-            // DOM 已经加载完成（脚本在 body 底部，通常已经 ready）
-            isScrolling = true;
-            startAutoScroll();
-        }
-
-        // 页面卸载时清理
-        window.addEventListener('beforeunload', () => {
-            stopAutoScroll();
-            if (userActionTimer) clearTimeout(userActionTimer);
-        });
-    </script>
-</body>
-</html>
+                // 平滑滚动
+                element.scrollIntoView({ 
+                    behavior: 's
