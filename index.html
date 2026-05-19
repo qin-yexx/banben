@@ -17,11 +17,9 @@
             --accent-purple: #7c5cfc;
             --accent-gold: #f0a500;
             --accent-rose: #e84a7a;
-            --accent-mint: #5ce0c5;
             --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.04);
             --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.06);
             --shadow-lg: 0 8px 32px rgba(0, 0, 0, 0.08);
-            --radius-sm: 8px;
             --radius-md: 12px;
             --radius-lg: 16px;
             --radius-xl: 20px;
@@ -40,30 +38,21 @@
         }
 
         body {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Hiragino Sans GB",
-                "Microsoft YaHei", sans-serif;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif;
             background: var(--bg-cream);
             color: var(--text-dark);
             line-height: 1.7;
-            letter-spacing: 0.02em;
-            -webkit-font-smoothing: antialiased;
         }
 
-        /* ========== 顶部导航 ========== */
+        /* 导航 */
         .top-nav {
             position: sticky;
             top: 0;
             z-index: 100;
-            background: rgba(255, 255, 255, 0.9);
+            background: rgba(255, 255, 255, 0.92);
             backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
             border-bottom: 1px solid rgba(0, 0, 0, 0.06);
-            padding: 0 40px;
-            transition: var(--transition);
-        }
-        .top-nav.scrolled {
-            background: rgba(255, 255, 255, 0.98);
-            box-shadow: var(--shadow-sm);
+            padding: 0 24px;
         }
         .nav-inner {
             max-width: 1400px;
@@ -72,25 +61,27 @@
             align-items: center;
             justify-content: space-between;
             height: 60px;
+            flex-wrap: wrap;
+            gap: 12px;
         }
         .nav-logo {
             font-weight: 700;
-            font-size: 1.3rem;
+            font-size: 1.2rem;
             color: var(--text-dark);
             text-decoration: none;
             display: flex;
             align-items: center;
-            gap: 10px;
+            gap: 8px;
         }
         .nav-logo .dot {
-            width: 10px;
-            height: 10px;
+            width: 8px;
+            height: 8px;
             border-radius: 50%;
             background: var(--accent-blue);
         }
         .nav-links {
             display: flex;
-            gap: 20px;
+            gap: 16px;
             list-style: none;
             flex-wrap: wrap;
         }
@@ -102,64 +93,41 @@
             padding: 6px 12px;
             border-radius: 20px;
             transition: var(--transition);
-            position: relative;
         }
-        .nav-links a:hover,
-        .nav-links a:focus {
+        .nav-links a:hover {
             color: var(--accent-blue);
             background: rgba(74, 144, 217, 0.06);
         }
-        .nav-links a::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 50%;
-            transform: translateX(-50%) scaleX(0);
-            width: 20px;
-            height: 2px;
-            background: var(--accent-blue);
-            border-radius: 2px;
-            transition: transform 0.3s ease;
-        }
-        .nav-links a:hover::after {
-            transform: translateX(-50%) scaleX(1);
-        }
         .nav-cta {
-            background: var(--accent-blue);
+            background: var(--accent-blue) !important;
             color: #fff !important;
             padding: 8px 20px !important;
             border-radius: 24px !important;
             font-weight: 600 !important;
-            transition: var(--transition);
         }
         .nav-cta:hover {
             background: #3a7bc8 !important;
-            box-shadow: 0 4px 16px rgba(74, 144, 217, 0.3);
-            transform: translateY(-1px);
-        }
-        .nav-cta::after {
-            display: none !important;
         }
 
-        /* ========== 主容器 ========== */
+        /* 主容器 */
         .main-container {
             max-width: 1400px;
             margin: 0 auto;
             padding: 20px 24px 80px;
         }
 
-        /* ========== Hero 区域 ========== */
+        /* Hero */
         .hero-section {
             display: flex;
             align-items: center;
-            gap: 48px;
-            padding: 48px 0 60px;
-            min-height: 70vh;
+            gap: 40px;
+            padding: 40px 0 60px;
+            min-height: 60vh;
             flex-wrap: wrap;
         }
         .hero-left {
             flex: 1;
-            min-width: 300px;
+            min-width: 280px;
         }
         .hero-tag {
             display: inline-block;
@@ -169,185 +137,112 @@
             border-radius: 20px;
             font-size: 0.85rem;
             font-weight: 600;
-            letter-spacing: 0.04em;
-            margin-bottom: 20px;
+            margin-bottom: 16px;
         }
         .hero-name {
-            font-size: clamp(2.8rem, 5vw, 4.2rem);
+            font-size: 3rem;
             font-weight: 800;
-            line-height: 1.15;
-            margin-bottom: 16px;
-            color: var(--text-dark);
-            letter-spacing: -0.02em;
+            margin-bottom: 12px;
         }
         .hero-name .accent {
             color: var(--accent-blue);
         }
         .hero-title {
-            font-size: 1.3rem;
+            font-size: 1.2rem;
             color: var(--text-gray);
-            font-weight: 500;
-            margin-bottom: 28px;
-            letter-spacing: 0.03em;
+            margin-bottom: 24px;
         }
         .hero-contact {
             display: flex;
-            gap: 20px;
+            gap: 16px;
             flex-wrap: wrap;
-            margin-bottom: 32px;
         }
         .hero-contact span {
             display: flex;
             align-items: center;
             gap: 8px;
-            color: var(--text-gray);
-            font-size: 0.95rem;
+            font-size: 0.9rem;
             background: var(--bg-white);
-            padding: 10px 18px;
+            padding: 10px 16px;
             border-radius: 24px;
             box-shadow: var(--shadow-sm);
-            transition: var(--transition);
-        }
-        .hero-contact span:hover {
-            box-shadow: var(--shadow-md);
-            transform: translateY(-2px);
-        }
-        .hero-contact .icon-circle {
-            width: 36px;
-            height: 36px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1rem;
-        }
-        .icon-blue {
-            background: rgba(74, 144, 217, 0.12);
-            color: var(--accent-blue);
-        }
-        .icon-teal {
-            background: rgba(46, 196, 182, 0.12);
-            color: var(--accent-teal);
-        }
-        .icon-coral {
-            background: rgba(255, 107, 107, 0.12);
-            color: var(--accent-coral);
         }
         .hero-right {
             flex: 1;
-            min-width: 320px;
+            min-width: 280px;
             display: flex;
             justify-content: center;
-            align-items: center;
         }
         .hero-media-card {
             width: 100%;
-            max-width: 500px;
+            max-width: 400px;
             background: var(--bg-white);
             border-radius: var(--radius-xl);
             overflow: hidden;
             box-shadow: var(--shadow-lg);
-            transition: var(--transition);
-            position: relative;
         }
-        .hero-media-card:hover {
-            transform: translateY(-6px);
-            box-shadow: 0 16px 48px rgba(0, 0, 0, 0.12);
-        }
-        .hero-media-card .media-wrapper {
-            position: relative;
-            width: 100%;
+        .media-wrapper {
             aspect-ratio: 4/3;
-            background: linear-gradient(135deg, #e8ecf1 0%, #d5dde5 100%);
+            background: #e8ecf1;
             display: flex;
             align-items: center;
             justify-content: center;
             cursor: pointer;
+            position: relative;
             overflow: hidden;
         }
-        .hero-media-card .media-wrapper img {
+        .media-wrapper img,
+        .media-wrapper video {
             width: 100%;
             height: 100%;
             object-fit: cover;
-            transition: transform 0.5s ease;
+            position: absolute;
+            top: 0;
+            left: 0;
         }
-        .hero-media-card:hover .media-wrapper img {
-            transform: scale(1.03);
-        }
-        .hero-media-card .media-placeholder {
+        .media-placeholder {
             display: flex;
             flex-direction: column;
             align-items: center;
-            gap: 12px;
-            color: var(--text-light);
-            font-size: 0.95rem;
+            gap: 8px;
+            color: #999;
+            z-index: 1;
         }
-        .hero-media-card .media-placeholder .icon-large {
-            font-size: 3.5rem;
-            opacity: 0.6;
+        .media-placeholder .icon-large {
+            font-size: 3rem;
         }
-        .hero-media-card .media-label {
+        .media-label {
             position: absolute;
-            bottom: 16px;
-            left: 16px;
+            bottom: 12px;
+            left: 12px;
             background: rgba(0, 0, 0, 0.6);
             color: #fff;
-            padding: 6px 14px;
-            border-radius: 20px;
-            font-size: 0.8rem;
-            font-weight: 500;
-            backdrop-filter: blur(6px);
-        }
-        .hero-media-card video {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
+            padding: 4px 12px;
+            border-radius: 16px;
+            font-size: 0.75rem;
+            z-index: 2;
         }
 
-        /* ========== 左右分栏布局 ========== */
+        /* 板块 */
         .section-block {
             display: flex;
             gap: 32px;
-            margin-bottom: 48px;
+            margin-bottom: 40px;
             flex-wrap: wrap;
             scroll-margin-top: 80px;
-            opacity: 0;
-            transform: translateY(20px);
-            transition: opacity 0.6s ease, transform 0.6s ease;
-        }
-        .section-block.visible {
-            opacity: 1;
-            transform: translateY(0);
         }
         .section-block.reverse {
             flex-direction: row-reverse;
         }
         .section-left {
             flex: 1;
-            min-width: 320px;
+            min-width: 280px;
             background: var(--bg-white);
             border-radius: var(--radius-lg);
-            padding: 36px;
+            padding: 32px;
             box-shadow: var(--shadow-md);
             border-left: 5px solid var(--accent-blue);
-            transition: var(--transition);
             position: relative;
-            overflow: hidden;
-        }
-        .section-left::before {
-            content: '';
-            position: absolute;
-            top: -40px;
-            right: -40px;
-            width: 120px;
-            height: 120px;
-            border-radius: 50%;
-            background: rgba(74, 144, 217, 0.04);
-            pointer-events: none;
-        }
-        .section-left:hover {
-            box-shadow: var(--shadow-lg);
-            transform: translateY(-2px);
         }
         .section-left.accent-teal {
             border-left-color: var(--accent-teal);
@@ -366,39 +261,52 @@
         }
         .section-right {
             flex: 1;
-            min-width: 320px;
+            min-width: 280px;
             display: flex;
             flex-direction: column;
             gap: 20px;
+        }
+        .section-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 16px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .section-subtitle {
+            color: var(--text-gray);
+            margin-bottom: 12px;
+        }
+        .section-text {
+            color: var(--text-gray);
+            font-size: 0.95rem;
+            line-height: 1.8;
+        }
+        .section-text p {
+            margin-bottom: 10px;
         }
         .media-slot {
             background: var(--bg-white);
             border-radius: var(--radius-lg);
             overflow: hidden;
             box-shadow: var(--shadow-md);
-            transition: var(--transition);
             cursor: pointer;
-            position: relative;
         }
-        .media-slot:hover {
-            box-shadow: var(--shadow-lg);
-            transform: translateY(-3px);
-        }
-        .media-slot .slot-inner {
+        .slot-inner {
             aspect-ratio: 16/10;
-            background: linear-gradient(135deg, #f0f3f7 0%, #e2e7ed 100%);
+            background: #e8ecf1;
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            gap: 10px;
-            color: var(--text-light);
-            transition: var(--transition);
+            gap: 8px;
+            color: #999;
             position: relative;
             overflow: hidden;
         }
-        .media-slot .slot-inner img,
-        .media-slot .slot-inner video {
+        .slot-inner img,
+        .slot-inner video {
             width: 100%;
             height: 100%;
             object-fit: cover;
@@ -406,18 +314,16 @@
             top: 0;
             left: 0;
         }
-        .media-slot .slot-label {
-            padding: 12px 16px;
+        .slot-label {
+            padding: 10px 14px;
             font-size: 0.85rem;
             color: var(--text-gray);
-            font-weight: 500;
             display: flex;
             align-items: center;
             gap: 6px;
             background: #fafbfc;
-            border-top: 1px solid rgba(0, 0, 0, 0.04);
         }
-        .media-slot .slot-label .dot-indicator {
+        .dot-indicator {
             width: 8px;
             height: 8px;
             border-radius: 50%;
@@ -434,170 +340,84 @@
         .dot-purple {
             background: var(--accent-purple);
         }
-        .section-title {
-            font-size: 1.6rem;
-            font-weight: 700;
-            margin-bottom: 20px;
-            color: var(--text-dark);
-            letter-spacing: -0.01em;
-            display: flex;
-            align-items: center;
-            gap: 12px;
-        }
-        .section-title .title-icon {
-            width: 40px;
-            height: 40px;
-            border-radius: 12px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.2rem;
-            flex-shrink: 0;
-        }
-        .icon-bg-blue {
-            background: rgba(74, 144, 217, 0.12);
-        }
-        .icon-bg-teal {
-            background: rgba(46, 196, 182, 0.12);
-        }
-        .icon-bg-coral {
-            background: rgba(255, 107, 107, 0.12);
-        }
-        .icon-bg-purple {
-            background: rgba(124, 92, 252, 0.12);
-        }
-        .icon-bg-gold {
-            background: rgba(240, 165, 0, 0.12);
-        }
-        .icon-bg-rose {
-            background: rgba(232, 74, 122, 0.12);
-        }
-        .section-subtitle {
-            font-size: 1rem;
-            color: var(--text-gray);
-            margin-bottom: 16px;
-            font-weight: 500;
-        }
-        .section-text {
-            color: var(--text-gray);
-            font-size: 0.95rem;
-            line-height: 1.8;
-        }
-        .section-text p {
-            margin-bottom: 12px;
-        }
         .tag-list {
             display: flex;
             flex-wrap: wrap;
-            gap: 10px;
-            margin-top: 16px;
+            gap: 8px;
+            margin-top: 12px;
         }
         .tag {
-            background: var(--bg-cream);
-            padding: 8px 16px;
-            border-radius: 20px;
+            background: #f0f2f5;
+            padding: 6px 14px;
+            border-radius: 16px;
             font-size: 0.85rem;
-            font-weight: 500;
-            color: var(--text-dark);
-            transition: var(--transition);
-            border: 1px solid rgba(0, 0, 0, 0.04);
-        }
-        .tag:hover {
-            background: var(--accent-blue);
-            color: #fff;
-            border-color: var(--accent-blue);
-            transform: translateY(-2px);
-            box-shadow: 0 4px 12px rgba(74, 144, 217, 0.25);
         }
         .timeline-item {
-            padding-left: 20px;
-            border-left: 2px solid rgba(0, 0, 0, 0.1);
-            margin-bottom: 20px;
-            position: relative;
+            padding-left: 16px;
+            border-left: 2px solid #e0e0e0;
+            margin-bottom: 16px;
         }
-        .timeline-item::before {
-            content: '';
-            position: absolute;
-            left: -6px;
-            top: 6px;
-            width: 10px;
-            height: 10px;
-            border-radius: 50%;
-            background: var(--accent-blue);
-        }
-        .timeline-item .time-label {
+        .time-label {
             font-size: 0.8rem;
             color: var(--text-light);
             margin-bottom: 4px;
-            font-weight: 500;
         }
         .timeline-item h4 {
             font-weight: 600;
             margin-bottom: 4px;
         }
         .highlight-box {
-            background: linear-gradient(135deg, rgba(74, 144, 217, 0.06) 0%, rgba(46, 196, 182, 0.06) 100%);
+            background: #f8fafc;
             border-radius: var(--radius-md);
-            padding: 20px;
-            margin-top: 16px;
-            border: 1px solid rgba(74, 144, 217, 0.1);
+            padding: 16px;
+            margin-top: 12px;
+            border: 1px solid #e8ecf1;
         }
 
-        /* ========== 自动滚动按钮 ========== */
+        /* 滚动按钮 */
         .scroll-indicator {
             position: fixed;
-            bottom: 30px;
-            right: 30px;
+            bottom: 24px;
+            right: 24px;
             z-index: 50;
             display: flex;
             flex-direction: column;
-            gap: 10px;
+            gap: 8px;
         }
         .scroll-btn {
             width: 44px;
             height: 44px;
             border-radius: 50%;
             background: var(--bg-white);
-            border: 1px solid rgba(0, 0, 0, 0.08);
+            border: 1px solid #e0e0e0;
             cursor: pointer;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 1.2rem;
-            color: var(--text-dark);
+            font-size: 1.1rem;
             box-shadow: var(--shadow-md);
             transition: var(--transition);
-            backdrop-filter: blur(10px);
         }
         .scroll-btn:hover {
             background: var(--accent-blue);
             color: #fff;
-            border-color: var(--accent-blue);
-            box-shadow: 0 6px 20px rgba(74, 144, 217, 0.35);
-            transform: translateY(-3px);
         }
-        .scroll-btn.auto-scroll-btn {
-            background: var(--accent-teal);
-            color: #fff;
-            border-color: var(--accent-teal);
-            font-size: 0.85rem;
-            font-weight: 600;
-            letter-spacing: 0.02em;
+        .auto-scroll-btn {
             width: auto;
             border-radius: 24px;
-            padding: 0 18px;
+            padding: 0 16px;
+            background: var(--accent-teal);
+            color: #fff;
+            border: none;
+            font-weight: 600;
+            font-size: 0.85rem;
             gap: 6px;
         }
-        .scroll-btn.auto-scroll-btn.paused {
+        .auto-scroll-btn.paused {
             background: var(--accent-coral);
-            border-color: var(--accent-coral);
-        }
-        .scroll-btn.auto-scroll-btn:hover {
-            background: #28b5a8;
-            border-color: #28b5a8;
         }
 
-        /* ========== 页脚 ========== */
+        /* 页脚 */
         .footer {
             text-align: center;
             padding: 40px 24px;
@@ -607,296 +427,450 @@
             margin-top: 40px;
         }
 
-        /* ========== 响应式 ========== */
         @media (max-width: 768px) {
             .section-block {
                 flex-direction: column !important;
-                gap: 20px;
-                margin-bottom: 32px;
-            }
-            .section-left {
-                padding: 24px;
-                border-left-width: 4px;
-            }
-            .section-right {
-                gap: 14px;
+                gap: 16px;
             }
             .hero-section {
                 flex-direction: column;
-                gap: 32px;
-                padding: 24px 0 40px;
-                min-height: auto;
+                gap: 24px;
             }
             .hero-name {
                 font-size: 2.2rem;
             }
-            .hero-contact {
-                flex-direction: column;
-                gap: 10px;
-            }
             .nav-links {
-                gap: 8px;
-                font-size: 0.8rem;
-            }
-            .nav-inner {
-                flex-wrap: wrap;
-                height: auto;
-                padding: 12px 0;
-                gap: 10px;
-            }
-            .top-nav {
-                padding: 0 16px;
-            }
-            .scroll-indicator {
-                bottom: 16px;
-                right: 16px;
-                gap: 8px;
-            }
-            .scroll-btn {
-                width: 38px;
-                height: 38px;
-                font-size: 1rem;
-            }
-            .scroll-btn.auto-scroll-btn {
+                gap: 4px;
                 font-size: 0.75rem;
-                padding: 0 14px;
-                height: 38px;
+            }
+            .nav-links a {
+                padding: 4px 8px;
             }
         }
     </style>
 </head>
 <body>
 
-    <!-- 顶部导航 -->
-    <nav class="top-nav" id="topNav">
+    <!-- 导航 -->
+    <nav class="top-nav">
         <div class="nav-inner">
-            <a href="#" class="nav-logo">
-                <span class="dot"></span> 李明远
-            </a>
+            <a href="#" class="nav-logo"><span class="dot"></span>李明远</a>
             <ul class="nav-links">
                 <li><a href="#about">关于我</a></li>
                 <li><a href="#experience">工作经历</a></li>
                 <li><a href="#projects">项目案例</a></li>
                 <li><a href="#education">教育背景</a></li>
                 <li><a href="#skills">专业技能</a></li>
-                <li><a href="#portfolio">作品集</a></li>
                 <li><a href="#contact-section" class="nav-cta">联系我</a></li>
             </ul>
         </div>
     </nav>
 
-    <!-- 主容器 -->
     <div class="main-container">
 
-        <!-- Hero 区域 -->
-        <section class="hero-section" id="hero">
+        <!-- Hero -->
+        <section class="hero-section">
             <div class="hero-left">
                 <span class="hero-tag">🚀 开放工作机会</span>
                 <h1 class="hero-name">李明远<span class="accent">.</span></h1>
                 <p class="hero-title">资深产品设计总监 · 用户体验策略专家</p>
                 <div class="hero-contact">
-                    <span><span class="icon-circle icon-blue">📧</span> li.mingyuan@design.studio</span>
-                    <span><span class="icon-circle icon-teal">📱</span> +86 138-8888-6666</span>
-                    <span><span class="icon-circle icon-coral">📍</span> 上海 · 中国</span>
+                    <span>📧 li.mingyuan@design.studio</span>
+                    <span>📱 +86 138-8888-6666</span>
+                    <span>📍 上海 · 中国</span>
                 </div>
             </div>
             <div class="hero-right">
                 <div class="hero-media-card">
-                    <div class="media-wrapper" onclick="this.querySelector('input').click()">
+                    <div class="media-wrapper" onclick="triggerUpload(this)">
                         <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=600&h=450&fit=crop&crop=face"
-                        alt="李明远 - 产品设计总监"
-                        onerror="this.style.display='none';this.parentElement.querySelector('.media-placeholder').style.display='flex'"
+                        alt="个人照片"
+                        onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"
                         loading="lazy">
-                        <div class="media-placeholder" style="display:none;">
-                            <span class="icon-large">📷</span>
-                            <span>个人照片展示区</span>
-                            <span style="font-size:0.75rem;">点击上传照片</span>
+                        <div class="media-placeholder" style="display:none">
+                            <span class="icon-large">📷</span><span>点击上传照片</span>
                         </div>
                         <span class="media-label">📸 个人形象照</span>
-                        <input type="file" accept="image/*" style="display:none;" onchange="handleImageUpload(this)">
+                        <input type="file" accept="image/*" style="display:none" onchange="handleImageUpload(this)">
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- 板块1: 关于我 -->
+        <!-- 关于我 -->
         <div class="section-block" id="about">
             <div class="section-left">
-                <div class="section-title">
-                    <span class="title-icon icon-bg-blue">👤</span> 关于我
-                </div>
+                <div class="section-title">👤 关于我</div>
                 <p class="section-subtitle">用设计连接用户与产品</p>
                 <div class="section-text">
                     <p>拥有<strong>12年+</strong>产品设计经验，曾在字节跳动、阿里巴巴担任高级设计管理职位。擅长从0到1构建设计系统，带领团队交付了多款千万级用户产品。</p>
-                    <p>坚信<strong>数据驱动设计</strong>与<strong>用户同理心</strong>的平衡是创造卓越产品的关键。热衷于探索AI与设计的交叉领域。</p>
+                    <p>坚信<strong>数据驱动设计</strong>与<strong>用户同理心</strong>的平衡是创造卓越产品的关键。</p>
                 </div>
                 <div class="highlight-box">
-                    <strong>🏆 核心成就：</strong> 主导设计的产品累计用户超<strong>5000万</strong>，设计系统被团队沿用至今，获红点设计奖提名。
+                    <strong>🏆 核心成就：</strong>主导设计的产品累计用户超<strong>5000万</strong>，获红点设计奖提名。
                 </div>
             </div>
             <div class="section-right">
                 <div class="media-slot">
-                    <div class="slot-inner" onclick="this.querySelector('input').click()">
+                    <div class="slot-inner" onclick="triggerUpload(this)">
                         <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?w=800&h=500&fit=crop"
                         alt="团队工作照"
-                        onerror="this.style.display='none';this.parentElement.querySelector('.media-placeholder').style.display='flex'"
+                        onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"
                         loading="lazy">
-                        <div class="media-placeholder" style="display:none;">
-                            <span>🖼️</span>
-                            <span>团队工作照片</span>
-                        </div>
-                        <input type="file" accept="image/*" style="display:none;" onchange="handleImageUpload(this)">
+                        <div class="media-placeholder" style="display:none"><span>🖼️</span><span>团队工作照片</span></div>
+                        <input type="file" accept="image/*" style="display:none" onchange="handleImageUpload(this)">
                     </div>
-                    <div class="slot-label"><span class="dot-indicator dot-blue"></span> 团队协作瞬间</div>
+                    <div class="slot-label"><span class="dot-indicator dot-blue"></span>团队协作瞬间</div>
                 </div>
                 <div class="media-slot">
-                    <div class="slot-inner" onclick="this.querySelector('input').click()">
+                    <div class="slot-inner" onclick="triggerUpload(this)">
                         <video src="" poster="https://images.unsplash.com/photo-1559526324-593bc073d938?w=800&h=500&fit=crop"
-                        controls preload="metadata" style="display:none;"
-                    onerror="this.style.display='none';this.parentElement.querySelector('.media-placeholder').style.display='flex'"></video>
-                    <div class="media-placeholder">
-                        <span>🎬</span>
-                        <span>个人介绍视频</span>
-                        <span style="font-size:0.75rem;">点击上传视频</span>
-                    </div>
-                    <input type="file" accept="video/*" style="display:none;" onchange="handleVideoUpload(this)">
+                        controls preload="metadata" style="display:none"
+                    onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"></video>
+                    <div class="media-placeholder"><span>🎬</span><span>个人介绍视频</span><span style="font-size:0.75rem">点击上传视频</span></div>
+                    <input type="file" accept="video/*" style="display:none" onchange="handleVideoUpload(this)">
                 </div>
-                <div class="slot-label"><span class="dot-indicator dot-teal"></span> 个人介绍视频</div>
+                <div class="slot-label"><span class="dot-indicator dot-teal"></span>个人介绍视频</div>
             </div>
         </div>
 
-        <!-- 板块2: 工作经历 -->
+        <!-- 工作经历 -->
         <div class="section-block reverse" id="experience">
             <div class="section-left accent-teal">
-                <div class="section-title">
-                    <span class="title-icon icon-bg-teal">💼</span> 工作经历
-                </div>
+                <div class="section-title">💼 工作经历</div>
                 <div class="timeline-item">
                     <div class="time-label">2021 - 至今</div>
                     <h4>产品设计总监 · 字节跳动</h4>
-                    <p class="section-text">负责抖音电商设计团队，管理15人设计团队，主导设计系统升级，提升设计效率40%。</p>
+                    <p class="section-text">负责抖音电商设计团队，管理15人团队，主导设计系统升级。</p>
                 </div>
                 <div class="timeline-item">
                     <div class="time-label">2017 - 2021</div>
                     <h4>高级设计经理 · 阿里巴巴</h4>
-                    <p class="section-text">领导淘宝直播设计团队，从0搭建直播电商设计规范，覆盖2000+商家。</p>
+                    <p class="section-text">领导淘宝直播设计团队，从0搭建直播电商设计规范。</p>
                 </div>
                 <div class="timeline-item">
                     <div class="time-label">2013 - 2017</div>
                     <h4>资深UX设计师 · 腾讯</h4>
-                    <p class="section-text">参与微信支付核心体验设计，优化支付流程，转化率提升25%。</p>
+                    <p class="section-text">参与微信支付核心体验设计，优化支付流程。</p>
                 </div>
             </div>
             <div class="section-right">
                 <div class="media-slot">
-                    <div class="slot-inner" onclick="this.querySelector('input').click()">
+                    <div class="slot-inner" onclick="triggerUpload(this)">
                         <img src="https://images.unsplash.com/photo-1553877522-43269d4ea984?w=800&h=500&fit=crop"
                         alt="字节跳动办公室"
-                        onerror="this.style.display='none';this.parentElement.querySelector('.media-placeholder').style.display='flex'"
+                        onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"
                         loading="lazy">
-                        <div class="media-placeholder" style="display:none;">
-                            <span>🏢</span>
-                            <span>字节跳动办公室</span>
-                        </div>
-                        <input type="file" accept="image/*" style="display:none;" onchange="handleImageUpload(this)">
+                        <div class="media-placeholder" style="display:none"><span>🏢</span><span>字节跳动办公室</span></div>
+                        <input type="file" accept="image/*" style="display:none" onchange="handleImageUpload(this)">
                     </div>
-                    <div class="slot-label"><span class="dot-indicator dot-teal"></span> 字节跳动 · 上海办公室</div>
+                    <div class="slot-label"><span class="dot-indicator dot-teal"></span>字节跳动 · 上海办公室</div>
                 </div>
                 <div class="media-slot">
-                    <div class="slot-inner" onclick="this.querySelector('input').click()">
+                    <div class="slot-inner" onclick="triggerUpload(this)">
                         <img src="https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?w=800&h=500&fit=crop"
                         alt="设计团队合影"
-                        onerror="this.style.display='none';this.parentElement.querySelector('.media-placeholder').style.display='flex'"
+                        onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"
                         loading="lazy">
-                        <div class="media-placeholder" style="display:none;">
-                            <span>👥</span>
-                            <span>设计团队合影</span>
-                        </div>
-                        <input type="file" accept="image/*" style="display:none;" onchange="handleImageUpload(this)">
+                        <div class="media-placeholder" style="display:none"><span>👥</span><span>设计团队合影</span></div>
+                        <input type="file" accept="image/*" style="display:none" onchange="handleImageUpload(this)">
                     </div>
-                    <div class="slot-label"><span class="dot-indicator dot-coral"></span> 设计团队合影</div>
+                    <div class="slot-label"><span class="dot-indicator dot-coral"></span>设计团队合影</div>
                 </div>
             </div>
         </div>
 
-        <!-- 板块3: 项目案例 -->
+        <!-- 项目案例 -->
         <div class="section-block" id="projects">
             <div class="section-left accent-coral">
-                <div class="section-title">
-                    <span class="title-icon icon-bg-coral">🚀</span> 项目案例
-                </div>
+                <div class="section-title">🚀 项目案例</div>
                 <div class="section-text">
-                    <p><strong>抖音电商设计系统</strong> — 从0到1构建完整设计语言，组件库包含200+组件，被50+业务线采用。</p>
-                    <p><strong>淘宝直播互动设计</strong> — 创新直播礼物特效与连麦交互，日均互动量提升300%。</p>
-                    <p><strong>微信支付体验优化</strong> — 重构支付流程，减少操作步骤，年交易额增长显著。</p>
+                    <p><strong>抖音电商设计系统</strong> — 从0到1构建完整设计语言，组件库包含200+组件。</p>
+                    <p><strong>淘宝直播互动设计</strong> — 创新直播礼物特效与连麦交互。</p>
+                    <p><strong>微信支付体验优化</strong> — 重构支付流程，年交易额增长显著。</p>
                 </div>
                 <div class="tag-list">
-                    <span class="tag">设计系统</span>
-                    <span class="tag">电商设计</span>
-                    <span class="tag">直播交互</span>
-                    <span class="tag">支付体验</span>
-                    <span class="tag">AI设计</span>
+                    <span class="tag">设计系统</span><span class="tag">电商设计</span><span class="tag">直播交互</span><span class="tag">AI设计</span>
                 </div>
             </div>
             <div class="section-right">
                 <div class="media-slot">
-                    <div class="slot-inner" onclick="this.querySelector('input').click()">
+                    <div class="slot-inner" onclick="triggerUpload(this)">
                         <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&h=500&fit=crop"
-                        alt="抖音电商设计系统截图"
-                        onerror="this.style.display='none';this.parentElement.querySelector('.media-placeholder').style.display='flex'"
+                        alt="设计系统截图"
+                        onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"
                         loading="lazy">
-                        <div class="media-placeholder" style="display:none;">
-                            <span>📱</span>
-                            <span>抖音电商设计系统</span>
-                        </div>
-                        <input type="file" accept="image/*" style="display:none;" onchange="handleImageUpload(this)">
+                        <div class="media-placeholder" style="display:none"><span>📱</span><span>设计系统界面</span></div>
+                        <input type="file" accept="image/*" style="display:none" onchange="handleImageUpload(this)">
                     </div>
-                    <div class="slot-label"><span class="dot-indicator dot-coral"></span> 抖音电商设计系统界面</div>
+                    <div class="slot-label"><span class="dot-indicator dot-coral"></span>抖音电商设计系统界面</div>
                 </div>
                 <div class="media-slot">
-                    <div class="slot-inner" onclick="this.querySelector('input').click()">
+                    <div class="slot-inner" onclick="triggerUpload(this)">
                         <video src="" poster="https://images.unsplash.com/photo-1611162617474-5b21e879e113?w=800&h=500&fit=crop"
-                        controls preload="metadata" style="display:none;"
-                    onerror="this.style.display='none';this.parentElement.querySelector('.media-placeholder').style.display='flex'"></video>
-                    <div class="media-placeholder">
-                        <span>🎥</span>
-                        <span>项目演示视频</span>
-                        <span style="font-size:0.75rem;">点击上传视频</span>
-                    </div>
-                    <input type="file" accept="video/*" style="display:none;" onchange="handleVideoUpload(this)">
+                        controls preload="metadata" style="display:none"
+                    onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"></video>
+                    <div class="media-placeholder"><span>🎥</span><span>项目演示视频</span><span style="font-size:0.75rem">点击上传视频</span></div>
+                    <input type="file" accept="video/*" style="display:none" onchange="handleVideoUpload(this)">
                 </div>
-                <div class="slot-label"><span class="dot-indicator dot-purple"></span> 项目交互演示视频</div>
+                <div class="slot-label"><span class="dot-indicator dot-purple"></span>项目交互演示视频</div>
             </div>
         </div>
 
-        <!-- 板块4: 教育背景 -->
+        <!-- 教育背景 -->
         <div class="section-block reverse" id="education">
             <div class="section-left accent-purple">
-                <div class="section-title">
-                    <span class="title-icon icon-bg-purple">🎓</span> 教育背景
-                </div>
+                <div class="section-title">🎓 教育背景</div>
                 <div class="timeline-item">
                     <div class="time-label">2010 - 2013</div>
                     <h4>同济大学 · 设计艺术学硕士</h4>
-                    <p class="section-text">研究方向：人机交互与用户体验设计，发表国际会议论文3篇。</p>
+                    <p class="section-text">研究方向：人机交互与用户体验设计，发表国际论文3篇。</p>
                 </div>
                 <div class="timeline-item">
                     <div class="time-label">2006 - 2010</div>
                     <h4>浙江大学 · 工业设计学士</h4>
-                    <p class="section-text">优秀毕业生，获国家奖学金，毕业设计获校级优秀。</p>
-                </div>
-                <div class="highlight-box">
-                    <strong>📚 持续学习：</strong> 完成斯坦福大学HCI在线课程，定期参加国际设计峰会。
+                    <p class="section-text">优秀毕业生，获国家奖学金。</p>
                 </div>
             </div>
             <div class="section-right">
                 <div class="media-slot">
-                    <div class="slot-inner" onclick="this.querySelector('input').click()">
+                    <div class="slot-inner" onclick="triggerUpload(this)">
                         <img src="https://images.unsplash.com/photo-1562774053-701939374585?w=800&h=500&fit=crop"
-                        alt="同济大学校园"
-                        onerror="this.style.display='none';this.parentElement.querySelector('.media-placeholder').style.display='flex'"
+                        alt="同济大学"
+                        onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"
                         loading="lazy">
-                        <div class="media-placeholder" style="display:none;">
-                            <span>🏛️</span>
-                            <span>同济大学校园</span>
-                        </
+                        <div class="media-placeholder" style="display:none"><span>🏛️</span><span>同济大学校园</span></div>
+                        <input type="file" accept="image/*" style="display:none" onchange="handleImageUpload(this)">
+                    </div>
+                    <div class="slot-label"><span class="dot-indicator dot-purple"></span>同济大学</div>
+                </div>
+                <div class="media-slot">
+                    <div class="slot-inner" onclick="triggerUpload(this)">
+                        <img src="https://images.unsplash.com/photo-1541339907198-e08756dedf3f?w=800&h=500&fit=crop"
+                        alt="浙江大学"
+                        onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"
+                        loading="lazy">
+                        <div class="media-placeholder" style="display:none"><span>🏫</span><span>浙江大学校园</span></div>
+                        <input type="file" accept="image/*" style="display:none" onchange="handleImageUpload(this)">
+                    </div>
+                    <div class="slot-label"><span class="dot-indicator dot-blue"></span>浙江大学</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 专业技能 -->
+        <div class="section-block" id="skills">
+            <div class="section-left accent-gold">
+                <div class="section-title">🛠️ 专业技能</div>
+                <div class="section-text">
+                    <p><strong>设计工具：</strong>Figma, Sketch, Adobe XD, Framer, Principle</p>
+                    <p><strong>用户研究：</strong>用户访谈、可用性测试、A/B测试、数据分析</p>
+                    <p><strong>管理能力：</strong>设计团队管理、跨部门协作、项目规划</p>
+                </div>
+                <div class="tag-list">
+                    <span class="tag">Figma</span><span class="tag">Sketch</span><span class="tag">Prototyping</span>
+                    <span class="tag">Design System</span><span class="tag">UX Research</span><span class="tag">Team Lead</span>
+                </div>
+            </div>
+            <div class="section-right">
+                <div class="media-slot">
+                    <div class="slot-inner" onclick="triggerUpload(this)">
+                        <img src="https://images.unsplash.com/photo-1581291518633-83b4eef92095?w=800&h=500&fit=crop"
+                        alt="设计工具"
+                        onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"
+                        loading="lazy">
+                        <div class="media-placeholder" style="display:none"><span>🎨</span><span>设计工具展示</span></div>
+                        <input type="file" accept="image/*" style="display:none" onchange="handleImageUpload(this)">
+                    </div>
+                    <div class="slot-label"><span class="dot-indicator dot-blue"></span>常用设计工具</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 联系我 -->
+        <div class="section-block" id="contact-section" style="margin-bottom:20px">
+            <div class="section-left accent-rose" style="flex:1; min-width:280px;">
+                <div class="section-title">📬 联系我</div>
+                <div class="section-text">
+                    <p>📧 邮箱：li.mingyuan@design.studio</p>
+                    <p>📱 电话：+86 138-8888-6666</p>
+                    <p>💼 LinkedIn：linkedin.com/in/mingyuanli</p>
+                    <p>🌐 作品集：mingyuan.design</p>
+                </div>
+                <div class="highlight-box" style="margin-top:16px">
+                    期待与您合作，共同创造卓越的产品体验！
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- 滚动按钮 -->
+    <div class="scroll-indicator">
+        <button class="scroll-btn auto-scroll-btn" id="autoScrollBtn" onclick="toggleAutoScroll()" title="自动滚动浏览">
+            ⬇️ 自动浏览
+        </button>
+        <button class="scroll-btn" onclick="window.scrollTo({top:0,behavior:'smooth'})" title="回到顶部">⬆️</button>
+    </div>
+
+    <!-- 页脚 -->
+    <div class="footer">
+        © 2024 李明远 · 产品设计总监 · 保留所有权利
+    </div>
+
+    <script>
+        // 文件上传处理
+        function triggerUpload(container) {
+            const input = container.querySelector('input[type="file"]');
+            if (input) input.click();
+        }
+
+        function handleImageUpload(input) {
+            const file = input.files[0];
+            if (!file) return;
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                const container = input.parentElement;
+                // 移除旧图片
+                const oldImg = container.querySelector('img');
+                if (oldImg) oldImg.style.display = 'none';
+                // 创建新图片
+                let img = container.querySelector('img.uploaded');
+                if (!img) {
+                    img = document.createElement('img');
+                    img.className = 'uploaded';
+                    img.style.cssText = 'width:100%;height:100%;object-fit:cover;position:absolute;top:0;left:0;';
+                    container.appendChild(img);
+                }
+                img.src = e.target.result;
+                img.style.display = 'block';
+                // 隐藏占位符
+                const placeholder = container.querySelector('.media-placeholder');
+                if (placeholder) placeholder.style.display = 'none';
+            };
+            reader.readAsDataURL(file);
+        }
+
+        function handleVideoUpload(input) {
+            const file = input.files[0];
+            if (!file) return;
+            const url = URL.createObjectURL(file);
+            const container = input.parentElement;
+            // 移除旧视频
+            const oldVideo = container.querySelector('video');
+            if (oldVideo) oldVideo.style.display = 'none';
+            // 创建新视频
+            let video = container.querySelector('video.uploaded');
+            if (!video) {
+                video = document.createElement('video');
+                video.className = 'uploaded';
+                video.controls = true;
+                video.style.cssText = 'width:100%;height:100%;object-fit:cover;position:absolute;top:0;left:0;';
+                container.appendChild(video);
+            }
+            video.src = url;
+            video.style.display = 'block';
+            // 隐藏占位符
+            const placeholder = container.querySelector('.media-placeholder');
+            if (placeholder) placeholder.style.display = 'none';
+        }
+
+        // 自动滚动功能
+        let autoScrollInterval = null;
+        let isAutoScrolling = false;
+
+        function toggleAutoScroll() {
+            const btn = document.getElementById('autoScrollBtn');
+            if (isAutoScrolling) {
+                stopAutoScroll();
+                btn.textContent = '⬇️ 自动浏览';
+                btn.classList.remove('paused');
+            } else {
+                startAutoScroll();
+                btn.textContent = '⏸️ 暂停浏览';
+                btn.classList.add('paused');
+            }
+        }
+
+        function startAutoScroll() {
+            isAutoScrolling = true;
+            autoScrollInterval = setInterval(() => {
+                const currentScroll = window.scrollY;
+                const maxScroll = document.body.scrollHeight - window.innerHeight;
+                if (currentScroll >= maxScroll - 50) {
+                    // 滚动到底部，回到顶部
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                } else {
+                    window.scrollBy({ top: 2, behavior: 'auto' });
+                }
+            }, 30);
+        }
+
+        function stopAutoScroll() {
+            isAutoScrolling = false;
+            if (autoScrollInterval) {
+                clearInterval(autoScrollInterval);
+                autoScrollInterval = null;
+            }
+        }
+
+        // 导航栏滚动效果
+        window.addEventListener('scroll', () => {
+            const nav = document.getElementById('topNav');
+            if (window.scrollY > 50) {
+                nav.classList.add('scrolled');
+            } else {
+                nav.classList.remove('scrolled');
+            }
+        });
+
+        // 用户手动滚动时暂停自动滚动
+        let scrollTimeout;
+        window.addEventListener('wheel', () => {
+            if (isAutoScrolling) {
+                stopAutoScroll();
+                const btn = document.getElementById('autoScrollBtn');
+                btn.textContent = '⬇️ 自动浏览';
+                btn.classList.remove('paused');
+                // 3秒后恢复自动滚动
+                clearTimeout(scrollTimeout);
+                scrollTimeout = setTimeout(() => {
+                    if (!isAutoScrolling) {
+                        startAutoScroll();
+                        btn.textContent = '⏸️ 暂停浏览';
+                        btn.classList.add('paused');
+                    }
+                }, 3000);
+            }
+        }, { passive: true });
+
+        // 触摸设备支持
+        window.addEventListener('touchmove', () => {
+            if (isAutoScrolling) {
+                stopAutoScroll();
+                const btn = document.getElementById('autoScrollBtn');
+                btn.textContent = '⬇️ 自动浏览';
+                btn.classList.remove('paused');
+                clearTimeout(scrollTimeout);
+                scrollTimeout = setTimeout(() => {
+                    if (!isAutoScrolling) {
+                        startAutoScroll();
+                        btn.textContent = '⏸️ 暂停浏览';
+                        btn.classList.add('paused');
+                    }
+                }, 3000);
+            }
+        }, { passive: true });
+
+        console.log('✅ 李明远简历页面已就绪');
+        console.log('📋 功能清单：');
+        console.log('  - 左右分栏布局（6大板块）');
+        console.log('  - 每个板块预留图片/视频上传区');
+        console.log('  - 自动滚动浏览（点击右下角按钮开启）');
+        console.log('  - 极简主义色块风格');
+        console.log('  - 响应式设计，适配移动端');
+        console.log('  - 粘性导航栏');
+        console.log('  - 点击媒体区可上传本地文件');
+    </script>
+</body>
+</html>
